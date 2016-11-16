@@ -2,7 +2,7 @@
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: Gameification
+  title: Gamification
   description: API REST
   version: "1.0.0"
 # the domain of the service
@@ -19,11 +19,11 @@ paths:
     get:
       summary: Get a badge
       description: |
-        The badge endpoint returns information about the *Badge*. 
+        The badge endpoint returns informations about the *Badge*. 
       parameters:
         - name: id
           in: query
-          description: ID of badge.
+          description: ID of the badge.
           required: true
           type: number
           format: int
@@ -39,19 +39,19 @@ paths:
           schema:
             $ref: '#/definitions/Error'
     post:
-      summary: post a Badge
+      summary: Add a Badge
       description: |
-        The Badge endpoint to post a new Badge.
+        The Badge endpoint to add a new Badge.
       parameters:
         - name: name
           in: query
-          description: name of badge.
+          description: Name of the badge
           required: true
           type: string
           format: string
         - name: image
           in: query
-          description: path of the image
+          description: Path to the image
           required: true
           type: string
           format: string
@@ -59,7 +59,7 @@ paths:
         - Badges
       responses:
         201:
-          description: The new badge
+          description: Badge has been successfully created
           schema:
             $ref: '#/definitions/Badge'
         default:
@@ -67,52 +67,85 @@ paths:
           schema:
             $ref: '#/definitions/Error'
     put:
-      summary: update a Badge
+      summary: Update a Badge
       description: |
         The Badge endpoint to update a Badge.
       parameters:
+        - name: id
+          in: query
+          description: ID of the badge
+          required: true
+          type: number
+          format: int
+        
         - name: name
           in: query
-          description: name of badge.
-          required: true
+          description: Name of the badge
+          required: false
+          type: string
+          format: string
+          
+        - name: image
+          in: query
+          description: Path to the image
+          required: false
           type: string
           format: string
       tags:
         - Badges
       responses:
         204:
-          description: The badge updated
+          description: The badge has been updated
+        default:
+          description: Unexpected error
           schema:
-            $ref: '#/definitions/Badge'
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Badge
+      description: |
+        The Badge endpoint to delete a Badge.
+      parameters:
+        - name: id
+          in: query
+          description: ID of the badge
+          required: true
+          type: number
+          format: int
+      tags:
+        - Badges
+      responses:
+        204:
+          description: The badge has been deleted
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
             
-  /levels:
+  /scalepoints:
     get:
-      summary: Get a level
+      summary: Get a scale point
       description: |
-        The levels endpoint returns information about the *Level*. 
+        The scalepoints endpoint returns information about the *scale point*. 
       parameters:
         - name: id
           in: query
-          description: name of level
+          description: id of the scale point
           required: true
           type: number
+          format: int
       tags:
-        - Levels
+        - Scale points
       responses:
         200:
-          description: A Level
+          description: A scale point
           schema:
-             $ref: '#/definitions/Level'
+             $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
     post:
-      summary: post a new Level
+      summary: post a new Scale Point
       description: |
         The Level endpoint to post a new Level.
       parameters:
@@ -129,18 +162,18 @@ paths:
           type: string
           format: string
       tags:
-        - Levels
+        - Scale points
       responses:
         201:
           description: The new level
           schema:
-            $ref: '#/definitions/Level'
+            $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
     put:
-      summary: update a Level
+      summary: update a Scale Point
       description: |
         The Level endpoint to update a new Level.
       parameters:
@@ -162,12 +195,12 @@ paths:
           type: string
           format: string
       tags:
-        - Levels
+        - Scale points
       responses:
         204:
           description: The Level updated
           schema:
-            $ref: '#/definitions/Level'
+            $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
@@ -186,18 +219,18 @@ definitions:
       image:
         type: string
         description: path of the image
-  Level:
+  ScalePoint:
     type: object
     properties:
-      level_id:
+      id:
         type: number
-        description: Unique identifier representing a specific level
+        description: Unique identifier representing a specific scale point
       name:
         type: string
-        description: name of level
-      minPoints:
+        description: name of scale point
+      nbPoints:
         type: number
-        description: minimum points to win this level
+        description: number of points of this scale
   Error:
     type: object
     properties:
