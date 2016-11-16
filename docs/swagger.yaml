@@ -1,0 +1,210 @@
+# this is an example of the SMC API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Gameification
+  description: API REST
+  version: "1.0.0"
+# the domain of the service
+host: amt.hostname
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /badges:
+    get:
+      summary: Get a badge
+      description: |
+        The badge endpoint returns information about the *Badge*. 
+      parameters:
+        - name: id
+          in: query
+          description: ID of badge.
+          required: true
+          type: number
+          format: int
+      tags:
+        - Badges
+      responses:
+        200:
+          description: A Badge
+          schema:
+             $ref: '#/definitions/Badge'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: post a Badge
+      description: |
+        The Badge endpoint to post a new Badge.
+      parameters:
+        - name: name
+          in: query
+          description: name of badge.
+          required: true
+          type: string
+          format: string
+        - name: image
+          in: query
+          description: path of the image
+          required: true
+          type: string
+          format: string
+      tags:
+        - Badges
+      responses:
+        201:
+          description: The new badge
+          schema:
+            $ref: '#/definitions/Badge'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: update a Badge
+      description: |
+        The Badge endpoint to update a Badge.
+      parameters:
+        - name: name
+          in: query
+          description: name of badge.
+          required: true
+          type: string
+          format: string
+      tags:
+        - Badges
+      responses:
+        204:
+          description: The badge updated
+          schema:
+            $ref: '#/definitions/Badge'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /levels:
+    get:
+      summary: Get a level
+      description: |
+        The levels endpoint returns information about the *Level*. 
+      parameters:
+        - name: id
+          in: query
+          description: name of level
+          required: true
+          type: number
+      tags:
+        - Levels
+      responses:
+        200:
+          description: A Level
+          schema:
+             $ref: '#/definitions/Level'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: post a new Level
+      description: |
+        The Level endpoint to post a new Level.
+      parameters:
+        - name: name
+          in: query
+          description: name of level.
+          required: true
+          type: string
+          format: string
+        - name: minPoints
+          in: query
+          description: minimum points to win this level
+          required: true
+          type: string
+          format: string
+      tags:
+        - Levels
+      responses:
+        201:
+          description: The new level
+          schema:
+            $ref: '#/definitions/Level'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: update a Level
+      description: |
+        The Level endpoint to update a new Level.
+      parameters:
+        - name: id
+          in: query
+          description: id of level.
+          required: true
+          type: number
+        - name: name
+          in: query
+          description: name of level.
+          required: false
+          type: string
+          format: string
+        - name: minPoints
+          in: query
+          description: minimum points to win level.
+          required: false
+          type: string
+          format: string
+      tags:
+        - Levels
+      responses:
+        204:
+          description: The Level updated
+          schema:
+            $ref: '#/definitions/Level'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    
+definitions:
+  Badge:
+    type: object
+    properties:
+      badge_id:
+        type: number
+        description: Unique identifier representing a specific badge
+      name:
+        type: string
+        description: name of badge
+      image:
+        type: string
+        description: path of the image
+  Level:
+    type: object
+    properties:
+      level_id:
+        type: number
+        description: Unique identifier representing a specific level
+      name:
+        type: string
+        description: name of level
+      minPoints:
+        type: number
+        description: minimum points to win this level
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
