@@ -1,6 +1,10 @@
 # this is an example of the SMC API
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
 info:
   title: Gamification
   description: API REST
@@ -14,26 +18,30 @@ schemes:
 basePath: /v1
 produces:
   - application/json
+  
+################################################################################
+#                                           Paths                              #
+################################################################################
 paths:
   /badges:
     get:
-      summary: Get a badge
+      summary: Get all the badges
       description: |
-        The badge endpoint returns informations about the *Badge*. 
-      parameters:
-        - name: id
-          in: query
-          description: ID of the badge.
-          required: true
-          type: number
-          format: int
+        The badge endpoint returns informations about all the *Badges*. 
       tags:
         - Badges
       responses:
         200:
-          description: A Badge
+          description: OK
           schema:
-             $ref: '#/definitions/Badge'
+            type: object
+            description: List of all the Badges
+            properties:
+              data:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/definitions/Badge'
         default:
           description: Unexpected error
           schema:
@@ -66,18 +74,28 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+            
+  /badges/{badge-id}:
+    parameters:
+      - $ref: '#/parameters/badge-id'
+    get:
+      tags:
+        - Badges
+      summary: Get a badge
+      description: Get basic information about a badge.
+      responses:
+        200:
+          description: The badge object
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/Badge'
     put:
       summary: Update a Badge
       description: |
         The Badge endpoint to update a Badge.
       parameters:
-        - name: id
-          in: query
-          description: ID of the badge
-          required: true
-          type: number
-          format: int
-        
         - name: name
           in: query
           description: Name of the badge
@@ -104,13 +122,6 @@ paths:
       summary: Delete a Badge
       description: |
         The Badge endpoint to delete a Badge.
-      parameters:
-        - name: id
-          in: query
-          description: ID of the badge
-          required: true
-          type: number
-          format: int
       tags:
         - Badges
       responses:
@@ -120,97 +131,146 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+                
   /scalepoints:
     get:
-      summary: Get a scale point
+      summary: Get all the scale points
       description: |
-        The scalepoints endpoint returns information about the *scale point*. 
-      parameters:
-        - name: id
-          in: query
-          description: id of the scale point
-          required: true
-          type: number
-          format: int
+        The scale point endpoint returns informations about all the *Scale Points*. 
       tags:
-        - Scale points
+        - Scale Points
       responses:
         200:
-          description: A scale point
+          description: OK
           schema:
-             $ref: '#/definitions/ScalePoint'
+            type: object
+            description: List of all the Scale Points
+            properties:
+              data:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
     post:
-      summary: post a new Scale Point
+      summary: Add a Scale point
       description: |
-        The Level endpoint to post a new Level.
+        The scale points endpoint to add a new scale point.
       parameters:
         - name: name
           in: query
-          description: name of level.
-          required: true
-          type: string
-          format: string
-        - name: minPoints
-          in: query
-          description: minimum points to win this level
+          description: Name of the scale point
           required: true
           type: string
           format: string
       tags:
-        - Scale points
+        - Scale Points
       responses:
         201:
-          description: The new level
+          description: Scale points has been successfully created
           schema:
             $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+            
+  /scalepoint/{sp-id}:
+    parameters:
+      - $ref: '#/parameters/sp-id'
+    get:
+      tags:
+        - Scale Points
+      summary: Get a scale point
+      description: Get basic information about a scale point.
+      responses:
+        200:
+          description: The scale point object
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/ScalePoint'
     put:
-      summary: update a Scale Point
+      summary: Update a Badge
       description: |
-        The Level endpoint to update a new Level.
+        The scale point endpoint to update a scale point.
       parameters:
-        - name: id
-          in: query
-          description: id of level.
-          required: true
-          type: number
         - name: name
           in: query
-          description: name of level.
-          required: false
-          type: string
-          format: string
-        - name: minPoints
-          in: query
-          description: minimum points to win level.
-          required: false
+          description: Name of the scale point
+          required: true
           type: string
           format: string
       tags:
-        - Scale points
+        - Scale Points
       responses:
         204:
-          description: The Level updated
-          schema:
-            $ref: '#/definitions/ScalePoint'
+          description: The scale point has been updated
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Scale point
+      description: |
+        The Scale point endpoint to delete a Scale point.
+      tags:
+        - Scale Points
+      responses:
+        204:
+          description: The scale point has been deleted
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /events:
+    post:
+      tags:
+        - Events
+      summary: Post events
+      description: add an event
+      responses:
+        201:
+          description: event has been successfully created
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  badge-id:
+    name: badge-id
+    in: path
+    description: The badge identifier number
+    type: number
+    required: true
     
+  sp-id:
+    name: sp-id
+    in: path
+    description: The scale point identifier number
+    type: number
+    required: true
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+
 definitions:
   Badge:
     type: object
     properties:
-      badge_id:
+      id:
         type: number
         description: Unique identifier representing a specific badge
       name:
@@ -219,6 +279,7 @@ definitions:
       image:
         type: string
         description: path of the image
+        
   ScalePoint:
     type: object
     properties:
@@ -228,9 +289,30 @@ definitions:
       name:
         type: string
         description: name of scale point
-      nbPoints:
+  
+  Event:
+    type: object
+    properties:
+      id:
         type: number
-        description: number of points of this scale
+        description: Unique identifier representing a specific badge
+      type:
+        type: string
+        description: type of event
+      actor:
+        type: object
+        description: User who triggers the event
+      payload:
+        type: object
+        description: Informations of the event
+        #look a real payload : https://api.github.com/users/Tonidias/events
+      createDate:
+        type: string
+        format: date-time
+        description: date of the creation
+      
+        
+        
   Error:
     type: object
     properties:
