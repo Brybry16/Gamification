@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package hello;
+package main;
 
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,22 +32,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.URL;
+
 @RunWith(SpringRunner.class)
+// runs test with the full application context and use a random port
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@DirtiesContext
 public class HelloWorldConfigurationTests {
 
+    // The random port will be injected here
     @LocalServerPort
     private int port;
+    private URL base;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private TestRestTemplate template;
+
+    @Before
+    public void setUp() throws Exception {
+        this.base = new URL("http://localhost:" + this.port + "/");
+    }
 
     @Test
     public void testGreeting() throws Exception {
-        ResponseEntity<String> entity = restTemplate
-                .getForEntity("http://localhost:" + this.port + "/", String.class);
-        assertEquals(HttpStatus.OK, entity.getStatusCode());
+        ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertThat(response.getBody(), equalTo("Hello Docker World"));
     }
 
 }
