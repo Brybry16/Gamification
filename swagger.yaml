@@ -22,7 +22,7 @@ consumes:
   - application/json
 produces:
   - application/json
-  
+
 ################################################################################
 #                                           Paths                              #
 ################################################################################
@@ -96,7 +96,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /badges/{badge-id}:
     parameters:
       - $ref: '#/parameters/badge-id'
@@ -124,7 +124,7 @@ paths:
           required: false
           type: string
           format: string
-          
+
         - name: image
           in: query
           description: Path to the image
@@ -153,7 +153,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-                
+
   /scalepoints:
     get:
       summary: Get all the scale points
@@ -195,7 +195,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /scalepoint/{sp-id}:
     parameters:
       - $ref: '#/parameters/sp-id'
@@ -245,7 +245,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /events:
     post:
       tags:
@@ -272,7 +272,7 @@ parameters:
     description: The badge identifier number
     type: number
     required: true
-    
+
   sp-id:
     name: sp-id
     in: path
@@ -290,7 +290,7 @@ definitions:
     properties:
       applicationName:
         type: string
-        
+
   Registration:
     type: object
     properties:
@@ -311,7 +311,7 @@ definitions:
       image:
         type: string
         description: path of the image
-        
+
   ScalePoint:
     type: object
     properties:
@@ -321,7 +321,7 @@ definitions:
       name:
         type: string
         description: name of scale point
-  
+
   Event:
     type: object
     properties:
@@ -342,9 +342,9 @@ definitions:
         type: string
         format: date-time
         description: date of the creation
-      
-        
-        
+
+
+
   Error:
     type: object
     properties:
