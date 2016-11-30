@@ -21,56 +21,54 @@ import java.util.List;
 public class BadgesApiController implements BadgesApi {
 
     public ResponseEntity<Void> badgesBadgeIdDelete(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") BigDecimal badgeId
+            @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") BigDecimal badgeId
 
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     public ResponseEntity<InlineResponse200> badgesBadgeIdGet(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") BigDecimal badgeId
+            @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") BigDecimal badgeId
 
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<InlineResponse200>(HttpStatus.OK);
     }
 
     public ResponseEntity<Void> badgesBadgeIdPut(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") BigDecimal badgeId
+            @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") BigDecimal badgeId
 
 
-,
-        @ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
+            ,
+            @ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
 
 
-
-,
-        @ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image
-
+            ,
+            @ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image
 
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     public ResponseEntity<List<Badge>> badgesGet(
-@ApiParam(value = "The application id" ,required=true ) @RequestHeader(value="appId", required=true) String appId
+            @ApiParam(value = "The application id", required = true) @RequestHeader(value = "appId", required = true) String appId
 
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<List<Badge>>(HttpStatus.OK);
     }
 
     public ResponseEntity<Badge> badgesPost(
 
-@ApiParam(value = "The info required to add a badge." ,required=true ) @RequestBody Badge badge
+            @ApiParam(value = "The info required to add a badge.", required = true) @RequestBody Badge badge
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<Badge>(HttpStatus.OK);
     }
