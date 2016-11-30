@@ -10,10 +10,17 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'org.detoeuf.swagger-codegen' version '1.6.3'
+	id 'java'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
+
+
 
 jar {
 	baseName = 'Gamify'
@@ -27,9 +34,40 @@ repositories {
 	mavenCentral()
 }
 
+task compile {
+	doLast {
+		println 'compiling source'
+	}
+}
+
+swagger {
+	inputSpec = 'src/main/resources/swagger.yaml'
+	output = 'src/gen/swagger'
+	language = 'spring'
+
+	additionalProperties = [
+			'invokerPackage'   : 'io.swagger.jersey1',
+			'modelPackage'     : 'io.swagger.model',
+			'apiPackage'       : 'io.swagger.api',
+//			'library'          : 'okhttp-gson',
+			'serializableModel': 'true',
+			'dateLibrary'      : 'java8'
+	]
+	apis = ''
+}
+
+sourceSets {
+	swagger {
+		java {
+			srcDir file("${project.buildDir.path}/swagger/src/main/java")
+		}
+	}
+}
 
 dependencies {
-	compile("io.springfox:springfox-io.swagger-ui:2.6.1")
+	swaggerCompile 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
+
 	compile("io.springfox:springfox-swagger2:2.6.1")
 	compile("joda-time:joda-time")
 	compile("com.fasterxml.jackson.datatype:jackson-datatype-joda")

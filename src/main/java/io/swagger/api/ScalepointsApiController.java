@@ -23,8 +23,7 @@ public class ScalepointsApiController implements ScalepointsApi {
     public ResponseEntity<ScalePoint> scalepointsPost(@ApiParam(value = "Name of the scale point", required = true) @RequestParam(value = "name", required = true) String name
 
 
-
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<ScalePoint>(HttpStatus.OK);
     }

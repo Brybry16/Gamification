@@ -23,9 +23,9 @@ public class RegistrationsApiController implements RegistrationsApi {
 
     public ResponseEntity<Void> registrationsPost(
 
-@ApiParam(value = "The info required to register an application." ,required=true ) @RequestBody Registration registration
+            @ApiParam(value = "The info required to register an application.", required = true) @RequestBody Registration registration
 
-) {
+    ) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

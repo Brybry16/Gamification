@@ -342,9 +342,7 @@ definitions:
         type: string
         format: date-time
         description: date of the creation
-      
-        
-        
+
   Error:
     type: object
     properties:
