@@ -1,5 +1,3 @@
-# this is an example of the SMC API
-# as a demonstration of an API spec in YAML
 swagger: '2.0'
 
 ################################################################################
@@ -22,26 +20,16 @@ consumes:
   - application/json
 produces:
   - application/json
-
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
 ################################################################################
 #                                           Paths                              #
 ################################################################################
 paths:
   /registrations:
-    get:
-      summary: Get registered apps
-      description: |
-        Returns a list of all the registered applications.
-      tags:
-        - Registrations
-      responses:
-        200:
-          description: List of all the registered applications
-          schema:
-            title: Registration summary
-            type: array
-            items:
-              $ref: '#/definitions/RegistrationSummary'
     post:
       tags:
         - Registrations
@@ -54,6 +42,7 @@ paths:
           required: true
       responses:
         200:
+        #return a token
           description: Register a new application
   /badges:
     get:
@@ -62,6 +51,8 @@ paths:
         The badge endpoint returns informations about all the *Badges*. 
       tags:
         - Badges
+      security:
+        - api_key: []
       responses:
         200:
           description: List of all the badges
@@ -76,8 +67,9 @@ paths:
             $ref: '#/definitions/Error'
     post:
       summary: Add a Badge
-      description: |
-        The Badge endpoint to add a new Badge.
+      description: The Badge endpoint to add a new Badge.
+      security:
+        - api_key: []
       parameters:
         - name: badge
           in: body
@@ -105,6 +97,8 @@ paths:
         - Badges
       summary: Get a badge
       description: Get basic informations about a badge.
+      security:
+        - api_key: []
       responses:
         200:
           description: The badge object
@@ -115,8 +109,9 @@ paths:
                 $ref: '#/definitions/Badge'
     put:
       summary: Update a Badge
-      description: |
-        The Badge endpoint to update a Badge.
+      description: The Badge endpoint to update a Badge.
+      security:
+        - api_key: []
       parameters:
         - name: name
           in: query
@@ -146,6 +141,8 @@ paths:
         The Badge endpoint to delete a Badge.
       tags:
         - Badges
+      security:
+        - api_key: []
       responses:
         204:
           description: The badge has been deleted
@@ -161,6 +158,8 @@ paths:
         The scale point endpoint returns informations about all the *Scale Points*. 
       tags:
         - Scale Points
+      security:
+        - api_key: []
       responses:
         200:
           description: List of all the Scale Points
@@ -177,6 +176,8 @@ paths:
       summary: Add a Scale point
       description: |
         The scale points endpoint to add a new scale point.
+      security:
+        - api_key: []
       parameters:
         - name: name
           in: query
@@ -204,6 +205,8 @@ paths:
         - Scale Points
       summary: Get a scale point
       description: Get basic information about a scale point.
+      security:
+        - api_key: []
       responses:
         200:
           description: The scale point object
@@ -216,6 +219,8 @@ paths:
       summary: Update a Badge
       description: |
         The scale point endpoint to update a scale point.
+      security:
+        - api_key: []
       parameters:
         - name: name
           in: query
@@ -236,6 +241,8 @@ paths:
       summary: Delete a Scale point
       description: |
         The Scale point endpoint to delete a Scale point.
+      security:
+        - api_key: []
       tags:
         - Scale Points
       responses:
@@ -252,11 +259,31 @@ paths:
         - Events
       summary: Post events
       description: add an event
+      security:
+        - api_key: []
       responses:
         201:
           description: event has been successfully created
           schema:
             $ref: '#/definitions/Event'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /rules:
+    post:
+      tags:
+        - Rules
+      summary: Post rules
+      description: post a rule
+      security:
+        - api_key: []
+      responses:
+        201:
+          description: return rule
+          schema:
+            $ref: '#/definitions/Rule'
         default:
           description: Unexpected error
           schema:
@@ -270,14 +297,14 @@ parameters:
     name: badge-id
     in: path
     description: The badge identifier number
-    type: number
+    type: string
     required: true
 
   sp-id:
     name: sp-id
     in: path
     description: The scale point identifier number
-    type: number
+    type: string
     required: true
 
 ################################################################################
@@ -303,11 +330,14 @@ definitions:
     type: object
     properties:
       id:
-        type: number
+        type: string
         description: Unique identifier representing a specific badge
       name:
         type: string
         description: name of badge
+      description:
+        type: string
+        description: description of the ScalePoint
       image:
         type: string
         description: path of the image
@@ -316,24 +346,27 @@ definitions:
     type: object
     properties:
       id:
-        type: number
+        type: string
         description: Unique identifier representing a specific scale point
+      description:
+        type: string
+        description: description of the ScalePoint
       name:
         type: string
         description: name of scale point
+      points:
+        type: number
+        description: Points 
 
   Event:
     type: object
     properties:
-      id:
-        type: number
-        description: Unique identifier representing a specific badge
       type:
         type: string
         description: type of event
-      actor:
-        type: object
-        description: User who triggers the event
+      user:
+        type: string
+        description: Id user who triggers the event
       payload:
         type: object
         description: Informations of the event
@@ -343,7 +376,27 @@ definitions:
         format: date-time
         description: date of the creation
 
+  Rule:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific rules
+      eventType:
+        type: string
+        description: Type of event
+      action:
+        $ref: '#/definitions/Action'
 
+  Action:
+    type: object
+    properties:
+      type:
+        type: string
+        description: type of action
+      payload:
+        type: object
+        description: payload for information like numbers points or id of bagde
 
   Error:
     type: object
