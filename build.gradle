@@ -54,6 +54,7 @@ swagger {
 			'dateLibrary'      : 'java8'
 	]
 	apis = ''
+	models = ''
 }
 
 sourceSets {
