@@ -15,23 +15,23 @@ import java.util.List;
 @Api(value = "registrations", description = "the registrations API")
 public interface RegistrationsApi {
 
-    @ApiOperation(value = "Get registered apps", notes = "Returns a list of all the registered applications. ", response = RegistrationSummary.class, responseContainer = "List", tags={ "Registrations", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "List of all the registered applications", response = RegistrationSummary.class) })
+    @ApiOperation(value = "Get registered apps", notes = "Returns a list of all the registered applications. ", response = RegistrationSummary.class, responseContainer = "List", tags = {"Registrations",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "List of all the registered applications", response = RegistrationSummary.class)})
     @RequestMapping(value = "/registrations",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.GET)
+            produces = {"application/json"},
+            consumes = {"application/json"},
+            method = RequestMethod.GET)
     ResponseEntity<List<RegistrationSummary>> registrationsGet();
 
 
-    @ApiOperation(value = "", notes = "", response = Void.class, tags={ "Registrations", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Register a new application", response = Void.class) })
+    @ApiOperation(value = "", notes = "", response = Void.class, tags = {"Registrations",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Register a new application", response = Void.class)})
     @RequestMapping(value = "/registrations",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
+            produces = {"application/json"},
+            consumes = {"application/json"},
+            method = RequestMethod.POST)
     ResponseEntity<Void> registrationsPost(
 
             @ApiParam(value = "The info required to register an application.", required = true) @RequestBody Registration registration

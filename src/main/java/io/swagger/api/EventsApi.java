@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Api(value = "events", description = "the events API")
 public interface EventsApi {
 
-    @ApiOperation(value = "Post events", notes = "add an event", response = Event.class, tags={ "Events", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "event has been successfully created", response = Event.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Event.class) })
+    @ApiOperation(value = "Post events", notes = "add an event", response = Event.class, tags = {"Events",})
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "event has been successfully created", response = Event.class),
+            @ApiResponse(code = 200, message = "Unexpected error", response = Event.class)})
     @RequestMapping(value = "/events",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
+            produces = {"application/json"},
+            consumes = {"application/json"},
+            method = RequestMethod.POST)
     ResponseEntity<Event> eventsPost();
 
 }

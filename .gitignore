@@ -2,6 +2,7 @@
 
 .gradle
 /build/
+classes
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
