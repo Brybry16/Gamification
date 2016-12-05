@@ -41,7 +41,7 @@ task compile {
 }
 
 swagger {
-	inputSpec = 'src/main/resources/swagger.yaml'
+	inputSpec = file('src/main/resources/swagger.yaml')
 	output = 'src/gen/swagger'
 	language = 'spring'
 
@@ -54,6 +54,7 @@ swagger {
 			'dateLibrary'      : 'java8'
 	]
 	apis = ''
+	models=''
 }
 
 sourceSets {
