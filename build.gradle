@@ -47,11 +47,14 @@ swagger {
 
 	additionalProperties = [
 			'invokerPackage'   : 'io.swagger.jersey1',
-			'modelPackage'     : 'io.swagger.model',
-			'apiPackage'       : 'io.swagger.api',
+			'modelPackage'     : 'ch.heigvd.gamification.api.dto',
+			'apiPackage'       : 'ch.heigvd.gamification.api',
 //			'library'          : 'okhttp-gson',
 			'serializableModel': 'true',
-			'dateLibrary'      : 'java8'
+			'dateLibrary'      : 'java8',
+			'basePackage'	   : 'ch.heigvd.gamification',
+			'configPackage'	   : 'ch.heigvd.gamification.config',
+			'interfaceOnly'	   : 'true'
 	]
 	apis = ''
 	models = ''
