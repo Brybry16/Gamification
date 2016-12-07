@@ -50,15 +50,16 @@ swagger {
 			'invokerPackage'   : 'io.swagger.jersey1',
 			'modelPackage'     : 'ch.heigvd.gamification.api.dto',
 			'apiPackage'       : 'ch.heigvd.gamification.api',
-//			'library'          : 'okhttp-gson',
+			'library'          : 'okhttp-gson',
 			'serializableModel': 'true',
 			'dateLibrary'      : 'java8',
-			'basePackage'	   : 'ch.heigvd.gamification',
-			'configPackage'	   : 'ch.heigvd.gamification.config',
-			'interfaceOnly'	   : 'true',
+			'basePackage'      : 'ch.heigvd.gamification',
+			'configPackage'    : 'ch.heigvd.gamification.config',
+			'interfaceOnly'    : 'true',
 	]
 	apis = ''
 	models = ''
+}
 
 sourceSets {
 	swagger {
