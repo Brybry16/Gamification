@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * InlineResponse2001
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-05T19:25:34.698+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-07T15:18:35.727+01:00")
 
 public class InlineResponse2001  implements Serializable {
   private ScalePoint data = null;
