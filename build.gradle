@@ -42,7 +42,7 @@ task compile {
 
 swagger {
 	inputSpec = file('src/main/resources/swagger.yaml')
-	output = 'src/gen/swagger'
+	output = 'src'
 	language = 'spring'
 
 	additionalProperties = [
@@ -54,7 +54,8 @@ swagger {
 			'dateLibrary'      : 'java8',
 			'basePackage'	   : 'ch.heigvd.gamification',
 			'configPackage'	   : 'ch.heigvd.gamification.config',
-			'interfaceOnly'	   : 'true'
+			'interfaceOnly'	   : 'true',
+			'cleanOutputDir'   : 'false',
 	]
 	apis = ''
 	models = ''
