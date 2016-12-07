@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-11-23T16:28:00.838+01:00")
 
+@Entity
 public class Badge   {
   private BigDecimal id = null;
 

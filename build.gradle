@@ -69,6 +69,7 @@ dependencies {
 
 	swaggerCompile 'org.springframework.boot:spring-boot-starter-web'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
 	compile("io.springfox:springfox-swagger2:2.6.1")
 	compile("joda-time:joda-time")
