@@ -41,8 +41,9 @@ task compile {
 }
 
 swagger {
-	inputSpec = file('src/main/resources/swagger.yaml')
+	inputSpec = file('swagger.yaml')
 	output = 'src'
+	cleanOutputDir = false
 	language = 'spring'
 
 	additionalProperties = [
@@ -55,11 +56,9 @@ swagger {
 			'basePackage'	   : 'ch.heigvd.gamification',
 			'configPackage'	   : 'ch.heigvd.gamification.config',
 			'interfaceOnly'	   : 'true',
-			'cleanOutputDir'   : 'false',
 	]
 	apis = ''
 	models = ''
-}
 
 sourceSets {
 	swagger {

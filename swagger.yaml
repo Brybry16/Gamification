@@ -1,0 +1,410 @@
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  title: Gamification Platform API
+  description: |
+    **This is the documentation of the AMT Gamification Platform API**
+  version: "1.0.0"
+# the domain of the service
+host: amt.hostname
+# will be prefixed to all paths
+basePath: /api
+# array of all schemes that your API supports
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /registrations:
+    post:
+      tags:
+        - Registrations
+      parameters:
+        - name: registration
+          in: body
+          description: The info required to register an application.
+          schema: 
+            $ref: '#/definitions/Registration'
+          required: true
+      responses:
+        200:
+        #return a token
+          description: Register a new application
+  /badges:
+    get:
+      summary: Get all the badges
+      description: |
+        The badge endpoint returns informations about all the *Badges*. 
+      tags:
+        - Badges
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: List of all the badges
+          schema:
+            title: Badges summary
+            type: array
+            items:
+              $ref: '#/definitions/Badge'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Add a Badge
+      description: The Badge endpoint to add a new Badge.
+      security:
+        - api_key: []
+      parameters:
+        - name: badge
+          in: body
+          description: The info required to add a badge.
+          schema:
+            $ref: '#/definitions/Badge'
+          required: true
+      tags:
+        - Badges
+      responses:
+        201:
+          description: Badge has been successfully created
+          schema:
+            $ref: '#/definitions/Badge'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /badges/{badge-id}:
+    parameters:
+      - $ref: '#/parameters/badge-id'
+    get:
+      tags:
+        - Badges
+      summary: Get a badge
+      description: Get basic informations about a badge.
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: The badge object
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/Badge'
+    put:
+      summary: Update a Badge
+      description: The Badge endpoint to update a Badge.
+      security:
+        - api_key: []
+      parameters:
+        - name: name
+          in: query
+          description: Name of the badge
+          required: false
+          type: string
+          format: string
+
+        - name: image
+          in: query
+          description: Path to the image
+          required: false
+          type: string
+          format: string
+      tags:
+        - Badges
+      responses:
+        204:
+          description: The badge has been updated
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Badge
+      description: |
+        The Badge endpoint to delete a Badge.
+      tags:
+        - Badges
+      security:
+        - api_key: []
+      responses:
+        204:
+          description: The badge has been deleted
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /scalepoints:
+    get:
+      summary: Get all the scale points
+      description: |
+        The scale point endpoint returns informations about all the *Scale Points*. 
+      tags:
+        - Scale Points
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: List of all the Scale Points
+          schema:
+            title: Scale Points summary
+            type: array
+            items:
+              $ref: '#/definitions/ScalePoint'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Add a Scale point
+      description: |
+        The scale points endpoint to add a new scale point.
+      security:
+        - api_key: []
+      parameters:
+        - name: name
+          in: query
+          description: Name of the scale point
+          required: true
+          type: string
+          format: string
+      tags:
+        - Scale Points
+      responses:
+        201:
+          description: Scale points has been successfully created
+          schema:
+            $ref: '#/definitions/ScalePoint'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /scalepoint/{sp-id}:
+    parameters:
+      - $ref: '#/parameters/sp-id'
+    get:
+      tags:
+        - Scale Points
+      summary: Get a scale point
+      description: Get basic information about a scale point.
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: The scale point object
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/ScalePoint'
+    put:
+      summary: Update a Badge
+      description: |
+        The scale point endpoint to update a scale point.
+      security:
+        - api_key: []
+      parameters:
+        - name: name
+          in: query
+          description: Name of the scale point
+          required: true
+          type: string
+          format: string
+      tags:
+        - Scale Points
+      responses:
+        204:
+          description: The scale point has been updated
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Scale point
+      description: |
+        The Scale point endpoint to delete a Scale point.
+      security:
+        - api_key: []
+      tags:
+        - Scale Points
+      responses:
+        204:
+          description: The scale point has been deleted
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /events:
+    post:
+      tags:
+        - Events
+      summary: Post events
+      description: add an event
+      security:
+        - api_key: []
+      responses:
+        201:
+          description: event has been successfully created
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /rules:
+    post:
+      tags:
+        - Rules
+      summary: Post rules
+      description: post a rule
+      security:
+        - api_key: []
+      responses:
+        201:
+          description: return rule
+          schema:
+            $ref: '#/definitions/Rule'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  badge-id:
+    name: badge-id
+    in: path
+    description: The badge identifier number
+    type: string
+    required: true
+
+  sp-id:
+    name: sp-id
+    in: path
+    description: The scale point identifier number
+    type: string
+    required: true
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+
+definitions:
+  RegistrationSummary:
+    type: object
+    properties:
+      applicationName:
+        type: string
+
+  Registration:
+    type: object
+    properties:
+      applicationName:
+        type: string
+      password:
+        type: string
+
+  Badge:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific badge
+      name:
+        type: string
+        description: name of badge
+      description:
+        type: string
+        description: description of the ScalePoint
+      image:
+        type: string
+        description: path of the image
+
+  ScalePoint:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific scale point
+      description:
+        type: string
+        description: description of the ScalePoint
+      name:
+        type: string
+        description: name of scale point
+      points:
+        type: number
+        description: Points 
+
+  Event:
+    type: object
+    properties:
+      type:
+        type: string
+        description: type of event
+      user:
+        type: string
+        description: Id user who triggers the event
+      payload:
+        type: object
+        description: Informations of the event
+        #look a real payload : https://api.github.com/users/Tonidias/events
+      createDate:
+        type: string
+        format: date-time
+        description: date of the creation
+
+  Rule:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific rules
+      eventType:
+        type: string
+        description: Type of event
+      action:
+        $ref: '#/definitions/Action'
+
+  Action:
+    type: object
+    properties:
+      type:
+        type: string
+        description: type of action
+      payload:
+        type: object
+        description: payload for information like numbers points or id of bagde
+
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
