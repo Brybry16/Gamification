@@ -1,8 +1,10 @@
 package io.swagger.api;
 
 import io.swagger.annotations.ApiParam;
+import io.swagger.dao.BadgeRepository;
 import io.swagger.model.Badge;
 import io.swagger.model.InlineResponse200;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 //@Autowired
@@ -22,12 +25,16 @@ import java.util.List;
 @Controller
 public class BadgesApiController implements BadgesApi {
 
+    @Autowired
+    private BadgeRepository badgeRepository;
+
     public ResponseEntity<Void> badgesBadgeIdDelete(
             @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") BigDecimal badgeId
 
 
     ) {
-        // do some magic!
+        Badge badge = badgeRepository.findOne(badgeId);
+        badgeRepository.delete(badge);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
@@ -36,7 +43,7 @@ public class BadgesApiController implements BadgesApi {
 
 
     ) {
-        // do some magic!
+        Badge badge = badgeRepository.findOne(badgeId);
         return new ResponseEntity<InlineResponse200>(HttpStatus.OK);
     }
 
@@ -53,7 +60,13 @@ public class BadgesApiController implements BadgesApi {
 
 
     ) {
-        // do some magic!
+        Badge badge = new Badge();
+        badge.setId(badgeId);
+        badge.setName(name);
+        badge.setImage(image);
+
+        badgeRepository.save(badge);
+
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
@@ -62,7 +75,7 @@ public class BadgesApiController implements BadgesApi {
 
 
     ) {
-        // do some magic!
+        ArrayList<Badge> badges = (ArrayList<Badge>) badgeRepository.findAll();
         return new ResponseEntity<List<Badge>>(HttpStatus.OK);
     }
 
@@ -71,7 +84,7 @@ public class BadgesApiController implements BadgesApi {
             @ApiParam(value = "The info required to add a badge.", required = true) @RequestBody Badge badge
 
     ) {
-        // do some magic!
+        badgeRepository.save(badge);
         return new ResponseEntity<Badge>(HttpStatus.OK);
     }
 
