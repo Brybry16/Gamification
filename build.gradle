@@ -42,17 +42,21 @@ task compile {
 
 swagger {
 	inputSpec = file('src/main/resources/swagger.yaml')
-	output = 'src/gen/swagger'
+	output = '.'
+	cleanOutputDir = false
 	language = 'spring'
 
 	additionalProperties = [
 			'invokerPackage'   : 'io.swagger.jersey1',
-			'modelPackage'     : 'io.swagger.model',
-			'apiPackage'       : 'io.swagger.api',
-//			'library'          : 'okhttp-gson',
+			'modelPackage'     : 'ch.heigvd.gamification.api.dto',
+			'apiPackage'       : 'ch.heigvd.gamification.api',
 			'serializableModel': 'true',
-			'dateLibrary'      : 'java8'
+			'dateLibrary'      : 'java8',
+			'basePackage'      : 'ch.heigvd.gamification',
+			'configPackage'    : 'ch.heigvd.gamification.config',
+			'interfaceOnly'    : 'true',
 	]
+
 	apis = ''
 	models = ''
 }
