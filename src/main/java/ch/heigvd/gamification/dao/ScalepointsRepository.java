@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 
 public interface ScalepointsRepository extends CrudRepository<ScalePoint, Long> {
     void delete(ScalePoint scalePoint);
-    ScalePoint findOne(BigDecimal id);
+    ScalePoint findOne(String id);
     Iterable<ScalePoint> findAll();
 }
