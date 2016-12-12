@@ -2,7 +2,6 @@ package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.Registration;
 import ch.heigvd.gamification.api.dto.RegistrationSummary;
-import ch.heigvd.gamification.dao.RegistrationsRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ import java.util.List;
 public class RegistrationsApiController implements RegistrationsApi {
 
     @Autowired
-    private RegistrationsRepository registrationsRepository;
+    private ch.heigvd.gamification.dao.RegistrationsRepository registrationsRepository;
 
     public ResponseEntity<List<RegistrationSummary>> registrationsGet() {
         ArrayList<Registration> badges = (ArrayList<Registration>) registrationsRepository.findAll();

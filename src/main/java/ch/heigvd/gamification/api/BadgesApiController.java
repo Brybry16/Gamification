@@ -17,11 +17,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-05T19:25:34.698+01:00")
 
 @Controller
 public class BadgesApiController implements BadgesApi {
+
     @Autowired
     private BadgesRepository badgesRepository;
 
