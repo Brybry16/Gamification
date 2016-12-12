@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.math.BigDecimal;
 
-public interface BadgeRepository extends CrudRepository<Badge, Long> {
+public interface BadgesRepository extends CrudRepository<Badge, Long> {
     Badge findByName(String name);
     Badge findOne(BigDecimal id);
     void delete(Badge badge);

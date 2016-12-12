@@ -1,12 +1,16 @@
 package io.swagger.api;
 
 import io.swagger.annotations.ApiParam;
+import io.swagger.dao.ScalepointRepository;
 import io.swagger.model.ScalePoint;
+import javafx.scene.transform.Scale;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,8 +19,11 @@ import java.util.List;
 @Controller
 public class ScalepointsApiController implements ScalepointsApi {
 
+    @Autowired
+    private ScalepointRepository scalepointRepository;
+
     public ResponseEntity<List<ScalePoint>> scalepointsGet() {
-        // do some magic!
+        ArrayList<ScalePoint> badges = (ArrayList<ScalePoint>) scalepointRepository.findAll();
         return new ResponseEntity<List<ScalePoint>>(HttpStatus.OK);
     }
 
@@ -24,7 +31,10 @@ public class ScalepointsApiController implements ScalepointsApi {
 
 
     ) {
-        // do some magic!
+        ScalePoint scalePoint = new ScalePoint();
+        scalePoint.setName(name);
+        scalepointRepository.save(scalePoint);
+
         return new ResponseEntity<ScalePoint>(HttpStatus.OK);
     }
 

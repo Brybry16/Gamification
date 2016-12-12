@@ -1,7 +1,10 @@
 package io.swagger.api;
 
 import io.swagger.annotations.ApiParam;
+import io.swagger.dao.ScalepointRepository;
 import io.swagger.model.InlineResponse2001;
+import io.swagger.model.ScalePoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,12 +19,16 @@ import java.math.BigDecimal;
 @Controller
 public class ScalepointApiController implements ScalepointApi {
 
+    @Autowired
+    private ScalepointRepository scalepointRepository;
+
     public ResponseEntity<Void> scalepointSpIdDelete(
             @ApiParam(value = "The scale point identifier number", required = true) @PathVariable("spId") BigDecimal spId
 
 
     ) {
-        // do some magic!
+        ScalePoint scalePoint = scalepointRepository.findOne(spId);
+        scalepointRepository.delete(scalePoint);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
@@ -30,7 +37,7 @@ public class ScalepointApiController implements ScalepointApi {
 
 
     ) {
-        // do some magic!
+        ScalePoint scalePoint = scalepointRepository.findOne(spId);
         return new ResponseEntity<InlineResponse2001>(HttpStatus.OK);
     }
 
@@ -43,7 +50,11 @@ public class ScalepointApiController implements ScalepointApi {
 
 
     ) {
-        // do some magic!
+        ScalePoint scalePoint = new ScalePoint();
+        scalePoint.setId(spId);
+        scalePoint.setName(name);
+        scalepointRepository.save(scalePoint);
+
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

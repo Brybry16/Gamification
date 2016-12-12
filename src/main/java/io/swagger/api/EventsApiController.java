@@ -1,6 +1,8 @@
 package io.swagger.api;
 
+import io.swagger.dao.EventsRepository;
 import io.swagger.model.Event;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class EventsApiController implements EventsApi {
+
+    @Autowired
+    private EventsRepository eventsRepository;
 
     public ResponseEntity<Event> eventsPost() {
         // do some magic!

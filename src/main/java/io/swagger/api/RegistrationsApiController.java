@@ -1,13 +1,16 @@
 package io.swagger.api;
 
 import io.swagger.annotations.ApiParam;
+import io.swagger.dao.RegistrationsRepository;
 import io.swagger.model.Registration;
 import io.swagger.model.RegistrationSummary;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,8 +19,11 @@ import java.util.List;
 @Controller
 public class RegistrationsApiController implements RegistrationsApi {
 
+    @Autowired
+    private RegistrationsRepository registrationsRepository;
+
     public ResponseEntity<List<RegistrationSummary>> registrationsGet() {
-        // do some magic!
+        ArrayList<Registration> badges = (ArrayList<Registration>) registrationsRepository.findAll();
         return new ResponseEntity<List<RegistrationSummary>>(HttpStatus.OK);
     }
 
@@ -26,7 +32,7 @@ public class RegistrationsApiController implements RegistrationsApi {
             @ApiParam(value = "The info required to register an application.", required = true) @RequestBody Registration registration
 
     ) {
-        // do some magic!
+        registrationsRepository.save(registration);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
