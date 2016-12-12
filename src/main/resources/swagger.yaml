@@ -197,7 +197,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /scalepoint/{sp-id}:
+  /scalepoints/{sp-id}:
     parameters:
       - $ref: '#/parameters/sp-id'
     get:
