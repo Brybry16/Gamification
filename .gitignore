@@ -4,6 +4,7 @@
 /build/
 classes
 !gradle/wrapper/gradle-wrapper.jar
+/docker/images/spring/*.jar
 
 ### STS ###
 .apt_generated
