@@ -1,5 +1,10 @@
 package ch.heigvd.gamification.api;
 
+import ch.heigvd.gamification.api.dto.Event;
+import ch.heigvd.gamification.dao.EventsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 
@@ -7,5 +12,11 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class EventsApiController implements EventsApi {
+    @Autowired
+    private EventsRepository eventsRepository;
 
+    public ResponseEntity<Event> eventsPost() {
+        // do some magic!
+        return new ResponseEntity<Event>(HttpStatus.OK);
+    }
 }
