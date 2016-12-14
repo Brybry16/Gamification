@@ -1,6 +1,6 @@
-package ch.heigvd.gamification.repositories;
+package ch.heigvd.gamification.dao;
 
-import ch.heigvd.gamification.dao.Rule;
+import ch.heigvd.gamification.models.Rule;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
