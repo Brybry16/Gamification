@@ -1,5 +1,4 @@
-package io.swagger;
-
+package ch.heigvd.gamification;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,19 +15,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ScalePointControllerTest {
+public class GamifyApplicationTests {
 
-    @Autowired
-    private MockMvc mvc;
+	@Autowired
+	private MockMvc mvc;
 
-    @Test
-    public void contextLoads() {
-    }
-
-    @Test
-    public void getAllBadges() throws Exception {
-        mvc.perform(get("/").accept(MediaType.TEXT_PLAIN))
-                .andExpect(status().isOk());
-    }
-
+	@Test
+	public void getAllBadges() throws Exception {
+		mvc.perform(get("/api").accept(MediaType.TEXT_PLAIN))
+				.andExpect(status().isOk());
+	}
 }
