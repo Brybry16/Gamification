@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * ScalePoint
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-12T14:16:38.271+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-07T15:18:35.727+01:00")
 
 public class ScalePoint  implements Serializable {
   private String id = null;
