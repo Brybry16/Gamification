@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  elasticsearch:
+    build: './images/elasticsearch'
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    environment:
+      ES_JAVA_OPTS: '-Xms1g -Xmx1g'
+  spring:
+    build: './images/spring'
+    ports:
+      - '8090:8090'
