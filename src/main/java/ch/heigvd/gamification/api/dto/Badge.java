@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * Badge
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-07T15:18:35.727+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
 
 public class Badge  implements Serializable {
   private String id = null;
