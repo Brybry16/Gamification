@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * Event
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-12T14:16:38.271+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
 
 public class Event  implements Serializable {
   private String type = null;

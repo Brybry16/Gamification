@@ -1,4 +1,4 @@
-package io.swagger;
+package ch.heigvd.gamification;
 
 
 import org.junit.Test;

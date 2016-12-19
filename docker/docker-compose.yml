@@ -1,14 +1,31 @@
 version: '2'
 
 services:
+  spring:
+    build: './images/spring'
+    ports:
+      - '8090:8090'
+    links:
+     - elasticsearch:evtdb
+     - mysql:db
   elasticsearch:
     build: './images/elasticsearch'
     ports:
       - '9200:9200'
       - '9300:9300'
     environment:
-      ES_JAVA_OPTS: '-Xms1g -Xmx1g'
-  spring:
-    build: './images/spring'
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+  mysql:
+    build: './images/mysql'
+    environment:
+     - MYSQL_ROOT_PASSWORD=adminpw
     ports:
-      - '8090:8090'
+     - "3306:3306"
+  phpmyadmin:
+    build: './images/phpmyadmin'
+    environment:
+     - MYSQL_ROOT_PASSWORD=adminpw
+    ports:
+     - "6060:80"
+    links:
+     - mysql:db
