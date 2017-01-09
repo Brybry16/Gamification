@@ -1,8 +1,8 @@
 package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.Error;
-import ch.heigvd.gamification.api.dto.InlineResponse200;
-import ch.heigvd.gamification.api.dto.Badge;
+import ch.heigvd.gamification.dao.InlineResponse200;
+import ch.heigvd.gamification.dao.Badge;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;

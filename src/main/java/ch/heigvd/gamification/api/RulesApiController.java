@@ -1,5 +1,8 @@
 package ch.heigvd.gamification.api;
 
+import ch.heigvd.gamification.api.dto.Rule;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 
@@ -7,5 +10,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class RulesApiController implements RulesApi {
+    public ResponseEntity<Rule> rulesPost() {
 
+        return new ResponseEntity<Rule>(HttpStatus.OK);
+    }
 }

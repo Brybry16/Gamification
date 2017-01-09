@@ -1,8 +1,5 @@
 package ch.heigvd.gamification.dao;
 
-import ch.heigvd.gamification.api.dto.*;
-import ch.heigvd.gamification.api.dto.Badge;
-
 import javax.persistence.*;
 
 @Entity
