@@ -43,7 +43,7 @@ public class RulesApiController implements RulesApi {
 
         if (rule != null) {
             ruleRepository.delete(rule);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
 
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
