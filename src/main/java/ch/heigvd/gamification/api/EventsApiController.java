@@ -61,6 +61,11 @@ public class EventsApiController implements EventsApi {
 
     @Override
     public ResponseEntity<Event> eventsPost() {
+
+
+
+        postElastic();
+
         return null;
     }
 }

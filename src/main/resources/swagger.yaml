@@ -16,10 +16,6 @@ basePath: /api
 schemes:
   - http
   - https
-consumes:
-  - application/json
-produces:
-  - application/json
 securityDefinitions:
   api_key:
     type: apiKey
@@ -31,13 +27,15 @@ securityDefinitions:
 paths:
   /registrations:
     post:
+      consumes:
+        - application/json
       tags:
         - Registrations
       parameters:
         - name: registration
           in: body
           description: The info required to register an application.
-          schema: 
+          schema:
             $ref: '#/definitions/Registration'
           required: true
       responses:
@@ -46,9 +44,11 @@ paths:
           description: Register a new application
   /badges:
     get:
+      produces:
+        - application/json
       summary: Get all the badges
       description: |
-        The badge endpoint returns informations about all the *Badges*. 
+        The badge endpoint returns informations about all the *Badges*.
       tags:
         - Badges
       security:
@@ -66,6 +66,8 @@ paths:
           schema:
             $ref: '#/definitions/Error'
     post:
+      consumes:
+        - application/json
       summary: Add a Badge
       description: The Badge endpoint to add a new Badge.
       security:
@@ -93,6 +95,8 @@ paths:
     parameters:
       - $ref: '#/parameters/badge-id'
     get:
+      produces:
+        - application/json
       tags:
         - Badges
       summary: Get a badge
@@ -108,6 +112,8 @@ paths:
               data:
                 $ref: '#/definitions/Badge'
     put:
+      consumes:
+        - application/json
       summary: Update a Badge
       description: The Badge endpoint to update a Badge.
       security:
@@ -153,9 +159,11 @@ paths:
 
   /scalepoints:
     get:
+      produces:
+        - application/json
       summary: Get all the scale points
       description: |
-        The scale point endpoint returns informations about all the *Scale Points*. 
+        The scale point endpoint returns informations about all the *Scale Points*.
       tags:
         - Scale Points
       security:
@@ -173,6 +181,10 @@ paths:
           schema:
             $ref: '#/definitions/Error'
     post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
       summary: Add a Scale point
       description: |
         The scale points endpoint to add a new scale point.
@@ -201,6 +213,8 @@ paths:
     parameters:
       - $ref: '#/parameters/sp-id'
     get:
+      produces:
+        - application/json
       tags:
         - Scale Points
       summary: Get a scale point
@@ -216,7 +230,11 @@ paths:
               data:
                 $ref: '#/definitions/ScalePoint'
     put:
-      summary: Update a Badge
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      summary: Update a scale point
       description: |
         The scale point endpoint to update a scale point.
       security:
@@ -233,6 +251,8 @@ paths:
       responses:
         204:
           description: The scale point has been updated
+          schema:
+            $ref: '#/definitions/ScalePoint'
         default:
           description: Unexpected error
           schema:
@@ -255,12 +275,23 @@ paths:
 
   /events:
     post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
       tags:
         - Events
       summary: Post events
       description: add an event
       security:
         - api_key: []
+      parameters:
+        - name: event
+          in: body
+          description: The infos from an event.
+          schema:
+            $ref: '#/definitions/Event'
+          required: true
       responses:
         201:
           description: event has been successfully created
@@ -273,17 +304,97 @@ paths:
 
   /rules:
     post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
       tags:
         - Rules
       summary: Post rules
       description: post a rule
       security:
         - api_key: []
+      parameters:
+        - name: rule
+          in: body
+          description: The infos from a rule.
+          schema:
+            $ref: '#/definitions/Rule'
+          required: true
       responses:
         201:
           description: return rule
           schema:
             $ref: '#/definitions/Rule'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /rules/{rule-id}:
+    parameters:
+      - $ref: '#/parameters/rule-id'
+    get:
+      produces:
+        - application/json
+      tags:
+        - Rules
+      summary: Get a rule
+      description: Get basic information about a rule.
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: The rule object
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/Rule'
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      summary: Update a scale point
+      description: |
+        The endpoint to update a rule.
+      security:
+        - api_key: []
+      parameters:
+        - name: eventType
+          in: query
+          description: Type of the event triggering the rule
+          required: true
+          type: string
+        - name: action
+          in: body
+          description: Action to do when the event is triggered
+          required: true
+          schema:
+            $ref: '#/definitions/Action'
+      tags:
+        - Rules
+      responses:
+        204:
+          description: The rule has been updated
+          schema:
+            $ref: '#/definitions/Rule'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Rule
+      description: |
+        The endpoint to delete a Rule.
+      security:
+        - api_key: []
+      tags:
+        - Rule
+      responses:
+        204:
+          description: The rule has been deleted
         default:
           description: Unexpected error
           schema:
@@ -297,14 +408,24 @@ parameters:
     name: badge-id
     in: path
     description: The badge identifier number
-    type: string
+    type: integer
+    format: int32
     required: true
 
   sp-id:
     name: sp-id
     in: path
     description: The scale point identifier number
-    type: string
+    type: integer
+    format: int32
+    required: true
+
+  rule-id:
+    name: rule-id
+    in: path
+    description: The rule identifier number
+    type: integer
+    format: int32
     required: true
 
 ################################################################################
@@ -312,12 +433,6 @@ parameters:
 ################################################################################
 
 definitions:
-  RegistrationSummary:
-    type: object
-    properties:
-      applicationName:
-        type: string
-
   Registration:
     type: object
     properties:
@@ -330,7 +445,8 @@ definitions:
     type: object
     properties:
       id:
-        type: string
+        type: integer
+        format: int32
         description: Unique identifier representing a specific badge
       name:
         type: string
@@ -346,7 +462,8 @@ definitions:
     type: object
     properties:
       id:
-        type: string
+        type: integer
+        format: int32
         description: Unique identifier representing a specific scale point
       description:
         type: string
@@ -355,8 +472,9 @@ definitions:
         type: string
         description: name of scale point
       points:
-        type: number
-        description: Points 
+        type: integer
+        format: int32
+        description: Points
 
   Event:
     type: object
@@ -380,7 +498,8 @@ definitions:
     type: object
     properties:
       id:
-        type: string
+        type: integer
+        format: int32
         description: Unique identifier representing a specific rules
       eventType:
         type: string
