@@ -103,5 +103,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
-	compile('org.springframework.data:spring-data-elasticsearch:2.0.5.RELEASE')
+    compile('org.elasticsearch.client:rest:5.1.1')
 }
