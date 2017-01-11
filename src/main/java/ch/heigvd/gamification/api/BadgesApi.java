@@ -1,19 +1,10 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.ErrorDto;
 import ch.heigvd.gamification.api.dto.BadgeDto;
-
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,11 +18,11 @@ public interface BadgesApi {
     }, tags={ "Badges", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The badge has been deleted", response = Void.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
-    @RequestMapping(value = "/badges/{badge-id}",
+        @ApiResponse(code = 404, message = "Badge not found", response = Void.class) })
+    @RequestMapping(value = "/badges/{badgeId}",
         method = RequestMethod.DELETE)
     default ResponseEntity<Void> badgesBadgeIdDelete(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
 
 
 ) {
@@ -45,11 +36,11 @@ public interface BadgesApi {
     }, tags={ "Badges", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "The badge object", response = BadgeDto.class) })
-    @RequestMapping(value = "/badges/{badge-id}",
+    @RequestMapping(value = "/badges/{badgeId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<BadgeDto> badgesBadgeIdGet(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
 
 
 ) {
@@ -58,17 +49,17 @@ public interface BadgesApi {
     }
 
 
-    @ApiOperation(value = "Update a Badge", notes = "The Badge endpoint to update a Badge.", response = Void.class, authorizations = {
+    @ApiOperation(value = "Update a Badge", notes = "The Badge endpoint to update a Badge.", response = BadgeDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Badges", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 204, message = "The badge has been updated", response = Void.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
-    @RequestMapping(value = "/badges/{badge-id}",
+        @ApiResponse(code = 204, message = "The badge has been updated", response = BadgeDto.class),
+        @ApiResponse(code = 404, message = "Badge not found", response = BadgeDto.class) })
+    @RequestMapping(value = "/badges/{badgeId}",
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Void> badgesBadgeIdPut(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
+    default ResponseEntity<BadgeDto> badgesBadgeIdPut(
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
 
 
 ,@ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
@@ -81,7 +72,7 @@ public interface BadgesApi {
 
 ) {
         // do some magic!
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<BadgeDto>(HttpStatus.OK);
     }
 
 

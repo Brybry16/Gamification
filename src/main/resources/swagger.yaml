@@ -91,9 +91,9 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /badges/{badge-id}:
+  /badges/{badgeId}:
     parameters:
-      - $ref: '#/parameters/badge-id'
+      - $ref: '#/parameters/badgeId'
     get:
       produces:
         - application/json
@@ -134,10 +134,10 @@ paths:
       responses:
         204:
           description: The badge has been updated
-        default:
-          description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Badge'
+        404:
+          description: Badge not found
     delete:
       summary: Delete a Badge
       description: |
@@ -149,10 +149,8 @@ paths:
       responses:
         204:
           description: The badge has been deleted
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+        404:
+          description: Badge not found
 
   /scalepoints:
     get:
@@ -206,9 +204,9 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /scalepoints/{sp-id}:
+  /scalepoints/{spId}:
     parameters:
-      - $ref: '#/parameters/sp-id'
+      - $ref: '#/parameters/spId'
     get:
       produces:
         - application/json
@@ -325,9 +323,9 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /rules/{rule-id}:
+  /rules/{ruleId}:
     parameters:
-      - $ref: '#/parameters/rule-id'
+      - $ref: '#/parameters/ruleId'
     get:
       produces:
         - application/json
@@ -395,28 +393,28 @@ paths:
 #                                   Parameters                                 #
 ################################################################################
 parameters:
-  badge-id:
-    name: badge-id
+  badgeId:
+    name: badgeId
     in: path
     description: The badge identifier number
     type: integer
-    format: int32
+    format: int64
     required: true
 
-  sp-id:
-    name: sp-id
+  spId:
+    name: spId
     in: path
     description: The scale point identifier number
     type: integer
-    format: int32
+    format: int64
     required: true
 
-  rule-id:
-    name: rule-id
+  ruleId:
+    name: ruleId
     in: path
     description: The rule identifier number
     type: integer
-    format: int32
+    format: int64
     required: true
 
 ################################################################################
@@ -437,7 +435,7 @@ definitions:
     properties:
       id:
         type: integer
-        format: int32
+        format: int64
         description: Unique identifier representing a specific badge
       name:
         type: string
@@ -454,7 +452,7 @@ definitions:
     properties:
       id:
         type: integer
-        format: int32
+        format: int64
         description: Unique identifier representing a specific scale point
       description:
         type: string
@@ -464,7 +462,7 @@ definitions:
         description: name of scale point
       points:
         type: integer
-        format: int32
+        format: int64
         description: Points
 
   Event:
@@ -489,7 +487,7 @@ definitions:
     properties:
       id:
         type: integer
-        format: int32
+        format: int64
         description: Unique identifier representing a specific rules
       eventType:
         type: string
@@ -512,7 +510,7 @@ definitions:
     properties:
       code:
         type: integer
-        format: int32
+        format: int64
       message:
         type: string
       fields:

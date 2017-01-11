@@ -1,19 +1,13 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.ErrorDto;
 import ch.heigvd.gamification.api.dto.ScalePointDto;
-
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -63,10 +57,10 @@ public interface ScalepointsApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The scale point has been deleted", response = Void.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
-    @RequestMapping(value = "/scalepoints/{sp-id}",
+    @RequestMapping(value = "/scalepoints/{spId}",
         method = RequestMethod.DELETE)
     default ResponseEntity<Void> scalepointsSpIdDelete(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Long spId
 
 
 ) {
@@ -80,11 +74,11 @@ public interface ScalepointsApi {
     }, tags={ "Scale Points", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "The scale point object", response = ScalePointDto.class) })
-    @RequestMapping(value = "/scalepoints/{sp-id}",
+    @RequestMapping(value = "/scalepoints/{spId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<ScalePointDto> scalepointsSpIdGet(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Long spId
 
 
 ) {
@@ -99,12 +93,12 @@ public interface ScalepointsApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The scale point has been updated", response = ScalePointDto.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = ScalePointDto.class) })
-    @RequestMapping(value = "/scalepoints/{sp-id}",
+    @RequestMapping(value = "/scalepoints/{spId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     default ResponseEntity<ScalePointDto> scalepointsSpIdPut(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Long spId
 
 
 ,@ApiParam(value = "Name of the scale point", required = true) @RequestParam(value = "name", required = true) String name

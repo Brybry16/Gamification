@@ -1,12 +1,9 @@
 package ch.heigvd.gamification.api.dto;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 /**
@@ -15,13 +12,13 @@ import java.io.Serializable;
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T17:25:39.314+01:00")
 
 public class ErrorDto  implements Serializable {
-  private Integer code = null;
+  private Long code = null;
 
   private String message = null;
 
   private String fields = null;
 
-  public ErrorDto code(Integer code) {
+  public ErrorDto code(Long code) {
     this.code = code;
     return this;
   }
@@ -31,11 +28,11 @@ public class ErrorDto  implements Serializable {
    * @return code
   **/
   @ApiModelProperty(value = "")
-  public Integer getCode() {
+  public Long getCode() {
     return code;
   }
 
-  public void setCode(Integer code) {
+  public void setCode(Long code) {
     this.code = code;
   }
 
