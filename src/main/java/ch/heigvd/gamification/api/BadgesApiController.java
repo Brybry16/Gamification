@@ -90,7 +90,6 @@ public class BadgesApiController implements BadgesApi {
     Badge convertToEntity(BadgeDto badgeDto) {
         return modelMapper.map(badgeDto, Badge.class);
     }
-
     BadgeDto convertToDto(Badge badge) {
         return modelMapper.map(badge, BadgeDto.class);
     }
