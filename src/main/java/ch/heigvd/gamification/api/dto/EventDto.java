@@ -1,19 +1,15 @@
 package ch.heigvd.gamification.api.dto;
 
-import java.time.OffsetDateTime;
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 /**
  * EventDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T17:25:39.314+01:00")
 
 public class EventDto  implements Serializable {
   private String type = null;
@@ -22,7 +18,7 @@ public class EventDto  implements Serializable {
 
   private Object payload = null;
 
-  private OffsetDateTime createDate = null;
+  private String createDate = null;
 
   public EventDto type(String type) {
     this.type = type;
@@ -78,7 +74,7 @@ public class EventDto  implements Serializable {
     this.payload = payload;
   }
 
-  public EventDto createDate(OffsetDateTime createDate) {
+  public EventDto createDate(String createDate) {
     this.createDate = createDate;
     return this;
   }
@@ -88,11 +84,11 @@ public class EventDto  implements Serializable {
    * @return createDate
   **/
   @ApiModelProperty(value = "date of the creation")
-  public OffsetDateTime getCreateDate() {
+  public String getCreateDate() {
     return createDate;
   }
 
-  public void setCreateDate(OffsetDateTime createDate) {
+  public void setCreateDate(String createDate) {
     this.createDate = createDate;
   }
 

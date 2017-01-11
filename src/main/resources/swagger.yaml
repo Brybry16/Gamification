@@ -482,7 +482,6 @@ definitions:
         #look a real payload : https://api.github.com/users/Tonidias/events
       createDate:
         type: string
-        format: date-time
         description: date of the creation
 
   Rule:

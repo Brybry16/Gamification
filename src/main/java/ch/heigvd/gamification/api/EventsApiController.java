@@ -13,11 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-05T19:25:34.698+01:00")
 
@@ -27,34 +25,35 @@ public class EventsApiController implements EventsApi {
     private RestClient restClient;
 
     public EventsApiController() {
-        restClient = RestClient.builder(
-                new HttpHost("evtdb", 9200, "http"),
-                new HttpHost("evtdb", 9300, "http")).build();
+        restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
     }
 
-    public int postElastic() {
+    public int postElastic(EventDto event) {
         try {
 
-            TimeZone tz = TimeZone.getTimeZone("UTC");
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-            df.setTimeZone(tz);
-            String isoDate = df.format(new Date());
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.INFO, "Posting to elasticsearch");
 
             HttpEntity entity = new NStringEntity(
                     "{\n" +
                     "    \"application_id\" : " + 3 + ",\n" +
-                    "    \"type\" : \"" + "Point" + "\",\n" +
-                    "    \"user_id\" : " + 32 + ",\n" +
-                    "    \"post_date\" : \"" + isoDate + "\"\n" +
+                    "    \"type\" : \"" + event.getType() + "\",\n" +
+                    "    \"user_id\" : \"" + event.getUser() + "\",\n" +
+                    "    \"post_date\" : \"" + event.getCreateDate() + "\"\n" +
                     "}", ContentType.APPLICATION_JSON);
+
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.INFO, "Created entity: " + entity.toString());
+
             Response indexResponse = restClient.performRequest(
                     "POST",
                     "/gamification/event",
                     Collections.<String, String>emptyMap(),
                     entity);
 
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.INFO, "Performed request, status code: " + indexResponse.getStatusLine().getStatusCode());
+
             return indexResponse.getStatusLine().getStatusCode();
         } catch (IOException e) {
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.SEVERE, "Error while performing the request");
             e.printStackTrace();
         }
         return -1;
@@ -62,7 +61,7 @@ public class EventsApiController implements EventsApi {
 
     @Override
     public ResponseEntity<EventDto> eventsPost(@ApiParam(value = "The infos from an event.", required = true) @RequestBody EventDto event) {
-        postElastic();
+        postElastic(event);
         return null;
     }
 }
