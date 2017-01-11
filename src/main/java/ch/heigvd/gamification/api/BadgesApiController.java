@@ -2,6 +2,7 @@ package ch.heigvd.gamification.api;
 
 
 import ch.heigvd.gamification.api.dto.BadgeDto;
+import ch.heigvd.gamification.api.dto.InlineResponse200Dto;
 import ch.heigvd.gamification.dao.BadgeRepository;
 import ch.heigvd.gamification.models.Badge;
 import io.swagger.annotations.ApiParam;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
@@ -39,6 +41,13 @@ public class BadgesApiController implements BadgesApi {
             badgeDtos.add(convertToDto(badge));
         }
         return ResponseEntity.ok(badgeDtos);
+    }
+
+    @Override
+    public ResponseEntity<InlineResponse200Dto> badgesBadgeIdGet(
+            @ApiParam @PathVariable("badgeId") String badgeId) {
+
+        return null;
     }
 
     Badge convertToEntity(BadgeDto badgeDto) {
