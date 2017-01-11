@@ -107,10 +107,7 @@ paths:
         200:
           description: The badge object
           schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/Badge'
+            $ref: '#/definitions/Badge'
     put:
       consumes:
         - application/json
@@ -225,10 +222,7 @@ paths:
         200:
           description: The scale point object
           schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/ScalePoint'
+            $ref: '#/definitions/ScalePoint'
     put:
       consumes:
         - application/json
@@ -347,10 +341,7 @@ paths:
         200:
           description: The rule object
           schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/Rule'
+            $ref: '#/definitions/Rule'
     put:
       consumes:
         - application/json
