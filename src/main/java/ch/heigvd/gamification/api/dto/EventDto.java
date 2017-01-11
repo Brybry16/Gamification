@@ -9,12 +9,12 @@ import java.util.Objects;
 /**
  * EventDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T17:25:39.314+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T19:02:38.829+01:00")
 
 public class EventDto  implements Serializable {
   private String type = null;
 
-  private String user = null;
+  private Long user = null;
 
   private Object payload = null;
 
@@ -38,7 +38,7 @@ public class EventDto  implements Serializable {
     this.type = type;
   }
 
-  public EventDto user(String user) {
+  public EventDto user(Long user) {
     this.user = user;
     return this;
   }
@@ -48,11 +48,11 @@ public class EventDto  implements Serializable {
    * @return user
   **/
   @ApiModelProperty(value = "Id user who triggers the event")
-  public String getUser() {
+  public Long getUser() {
     return user;
   }
 
-  public void setUser(String user) {
+  public void setUser(Long user) {
     this.user = user;
   }
 

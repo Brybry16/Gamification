@@ -37,7 +37,7 @@ public class EventsApiController implements EventsApi {
                     "{\n" +
                     "    \"application_id\" : " + 3 + ",\n" +
                     "    \"type\" : \"" + event.getType() + "\",\n" +
-                    "    \"user_id\" : \"" + event.getUser() + "\",\n" +
+                    "    \"user_id\" : " + event.getUser() + ",\n" +
                     "    \"post_date\" : \"" + event.getCreateDate() + "\"\n" +
                     "}", ContentType.APPLICATION_JSON);
 

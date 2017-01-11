@@ -472,7 +472,8 @@ definitions:
         type: string
         description: type of event
       user:
-        type: string
+        type: integer
+        format: int64
         description: Id user who triggers the event
       payload:
         type: object
