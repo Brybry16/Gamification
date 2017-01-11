@@ -1,6 +1,5 @@
 package ch.heigvd.gamification.api;
 
-
 import ch.heigvd.gamification.api.dto.BadgeDto;
 import ch.heigvd.gamification.dao.BadgeRepository;
 import ch.heigvd.gamification.models.Badge;
