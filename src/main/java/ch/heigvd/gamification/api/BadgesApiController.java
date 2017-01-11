@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,30 +26,65 @@ public class BadgesApiController implements BadgesApi {
     ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public ResponseEntity badgesPost(
-            @ApiParam(value = "The info required to add a badge.", required = true)
-            @RequestBody BadgeDto badgeDto) {
-        Badge badge = convertToEntity(badgeDto);
-        badgeRepository.save(badge);
-        return new ResponseEntity(HttpStatus.CREATED);
-    }
+    public ResponseEntity<Void> badgesBadgeIdDelete(
+            @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
+    ) {
+        Badge badge = badgeRepository.findOne(badgeId);
 
-    @Override
-    public ResponseEntity<List<BadgeDto>> badgesGet() {
-        List<BadgeDto> badgeDtos = new ArrayList<>();
-        for (Badge badge: badgeRepository.findAll()) {
-            badgeDtos.add(convertToDto(badge));
+        if (badge != null) {
+            badgeRepository.delete(badge);
+            return new ResponseEntity<Void>(HttpStatus.OK);
         }
-        return ResponseEntity.ok(badgeDtos);
+
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
     @Override
     public ResponseEntity<BadgeDto> badgesBadgeIdGet(@ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Long badgeId) {
         Badge badge = badgeRepository.findOne(badgeId);
-        if (badge != null) {
+
+        if (badge != null)
             return ResponseEntity.ok(convertToDto(badge));
-        }
+
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    public ResponseEntity<Void> badgesBadgeIdPut(
+            @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
+            ,@ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
+            ,@ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image
+    ) {
+        Badge badge = badgeRepository.findOne(badgeId);
+
+        if (badge == null)
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        badge.setName(name);
+        badge.setImage(image);
+
+        badgeRepository.save(badge);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<BadgeDto>> badgesGet() {
+        List<BadgeDto> badgeDtos = new ArrayList<>();
+
+        for (Badge badge: badgeRepository.findAll())
+            badgeDtos.add(convertToDto(badge));
+
+        return ResponseEntity.ok(badgeDtos);
+    }
+
+    @Override
+    public ResponseEntity badgesPost(
+            @ApiParam(value = "The info required to add a badge.", required = true)
+            @RequestBody BadgeDto badgeDto) {
+        badgeRepository.save(convertToEntity(badgeDto));
+
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     Badge convertToEntity(BadgeDto badgeDto) {
