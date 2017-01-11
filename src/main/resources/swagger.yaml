@@ -134,10 +134,10 @@ paths:
       responses:
         204:
           description: The badge has been updated
-        default:
-          description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Badge'
+        404:
+          description: Badge not found
     delete:
       summary: Delete a Badge
       description: |
@@ -149,10 +149,8 @@ paths:
       responses:
         204:
           description: The badge has been deleted
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+        404:
+          description: Badge not found
 
   /scalepoints:
     get:

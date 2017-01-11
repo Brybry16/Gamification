@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,32 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
+    public ResponseEntity<Void> badgesBadgeIdDelete(
+            @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Long badgeId) {
+        Badge badge = badgeRepository.findOne(badgeId);
+        if(badge != null) {
+            badgeRepository.delete(badgeId);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public ResponseEntity<BadgeDto> badgesBadgeIdPut(
+            @ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Long badgeId,
+            @ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name,
+            @ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image) {
+        Badge badge = badgeRepository.findOne(badgeId);
+        if(badge != null) {
+            if(name != null) badge.setName(name);
+            if(image != null) badge.setImage(image);
+            badgeRepository.save(badge);
+            return null;
+        }
+        return null;
+    }
+
+    @Override
     public ResponseEntity<BadgeDto> badgesBadgeIdGet(@ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Long badgeId) {
         Badge badge = badgeRepository.findOne(badgeId);
         if (badge != null) {
@@ -58,4 +85,5 @@ public class BadgesApiController implements BadgesApi {
     BadgeDto convertToDto(Badge badge) {
         return modelMapper.map(badge, BadgeDto.class);
     }
+
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:34:45.128+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T17:18:11.530+01:00")
 
 @Api(value = "badges", description = "the badges API")
 public interface BadgesApi {
@@ -18,7 +18,7 @@ public interface BadgesApi {
     }, tags={ "Badges", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The badge has been deleted", response = Void.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+        @ApiResponse(code = 404, message = "Badge not found", response = Void.class) })
     @RequestMapping(value = "/badges/{badgeId}",
         method = RequestMethod.DELETE)
     default ResponseEntity<Void> badgesBadgeIdDelete(
@@ -49,16 +49,16 @@ public interface BadgesApi {
     }
 
 
-    @ApiOperation(value = "Update a Badge", notes = "The Badge endpoint to update a Badge.", response = Void.class, authorizations = {
+    @ApiOperation(value = "Update a Badge", notes = "The Badge endpoint to update a Badge.", response = BadgeDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Badges", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 204, message = "The badge has been updated", response = Void.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+        @ApiResponse(code = 204, message = "The badge has been updated", response = BadgeDto.class),
+        @ApiResponse(code = 404, message = "Badge not found", response = BadgeDto.class) })
     @RequestMapping(value = "/badges/{badgeId}",
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Void> badgesBadgeIdPut(
+    default ResponseEntity<BadgeDto> badgesBadgeIdPut(
 @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Long badgeId
 
 
@@ -72,7 +72,7 @@ public interface BadgesApi {
 
 ) {
         // do some magic!
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<BadgeDto>(HttpStatus.OK);
     }
 
 
