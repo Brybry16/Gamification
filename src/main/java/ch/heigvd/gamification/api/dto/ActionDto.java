@@ -10,16 +10,16 @@ import java.io.Serializable;
 
 
 /**
- * Action
+ * ActionDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Action  implements Serializable {
+public class ActionDto  implements Serializable {
   private String type = null;
 
   private Object payload = null;
 
-  public Action type(String type) {
+  public ActionDto type(String type) {
     this.type = type;
     return this;
   }
@@ -37,7 +37,7 @@ public class Action  implements Serializable {
     this.type = type;
   }
 
-  public Action payload(Object payload) {
+  public ActionDto payload(Object payload) {
     this.payload = payload;
     return this;
   }
@@ -64,7 +64,7 @@ public class Action  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Action action = (Action) o;
+    ActionDto action = (ActionDto) o;
     return Objects.equals(this.type, action.type) &&
         Objects.equals(this.payload, action.payload);
   }
@@ -77,7 +77,7 @@ public class Action  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Action {\n");
+    sb.append("class ActionDto {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");

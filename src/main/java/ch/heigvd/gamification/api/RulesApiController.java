@@ -1,6 +1,7 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.Rule;
+import ch.heigvd.gamification.api.dto.ActionDto;
+import ch.heigvd.gamification.api.dto.RuleDto;
 import ch.heigvd.gamification.dao.RuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,14 @@ public class RulesApiController implements RulesApi {
     private RuleRepository repository;
 
     @Override
-    public ResponseEntity<Rule> rulesPost() {
-        return null;
+    public ResponseEntity<RuleDto> rulesPost() {
+        RuleDto rule = new RuleDto();
+        ActionDto action = new ActionDto();
+        action.setType("My Action type");
+        action.setPayload("This my payload");
+        rule.setAction(action);
+        rule.setEventType("My Event Type");
+        rule.setId("abc");
+        return ResponseEntity.ok(rule);
     }
 }

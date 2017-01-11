@@ -10,16 +10,16 @@ import java.io.Serializable;
 
 
 /**
- * Registration
+ * RegistrationDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Registration  implements Serializable {
+public class RegistrationDto  implements Serializable {
   private String applicationName = null;
 
   private String password = null;
 
-  public Registration applicationName(String applicationName) {
+  public RegistrationDto applicationName(String applicationName) {
     this.applicationName = applicationName;
     return this;
   }
@@ -37,7 +37,7 @@ public class Registration  implements Serializable {
     this.applicationName = applicationName;
   }
 
-  public Registration password(String password) {
+  public RegistrationDto password(String password) {
     this.password = password;
     return this;
   }
@@ -64,7 +64,7 @@ public class Registration  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registration registration = (Registration) o;
+    RegistrationDto registration = (RegistrationDto) o;
     return Objects.equals(this.applicationName, registration.applicationName) &&
         Objects.equals(this.password, registration.password);
   }
@@ -77,7 +77,7 @@ public class Registration  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Registration {\n");
+    sb.append("class RegistrationDto {\n");
     
     sb.append("    applicationName: ").append(toIndentedString(applicationName)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
