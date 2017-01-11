@@ -1,4 +1,4 @@
-package ch.heigvd.gamification.dao;
+package ch.heigvd.gamification.models;
 import javax.persistence.*;
 
 

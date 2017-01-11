@@ -1,4 +1,7 @@
-package ch.heigvd.gamification.dao;
+package ch.heigvd.gamification.models;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +13,18 @@ public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String type = null;
+    private String type;
+    private String payload;
 
     protected Action() {}
 
-    public Action(String type) {
+    public Action(String type, Object payload) {
         this.type = type;
+        try {
+            this.payload = new ObjectMapper().writeValueAsString(payload);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     public Long getId() {
@@ -32,6 +41,18 @@ public class Action {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setPayload(Object payload) {
+        try {
+            this.payload = new ObjectMapper().writeValueAsString(payload);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getPayload() {
+        return payload;
     }
 
     @Override

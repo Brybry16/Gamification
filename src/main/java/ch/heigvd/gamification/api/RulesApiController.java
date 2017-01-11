@@ -1,5 +1,9 @@
 package ch.heigvd.gamification.api;
 
+import ch.heigvd.gamification.api.dto.Rule;
+import ch.heigvd.gamification.dao.RuleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 
@@ -8,4 +12,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RulesApiController implements RulesApi {
 
+    @Autowired
+    private RuleRepository repository;
+
+    @Override
+    public ResponseEntity<Rule> rulesPost() {
+        return null;
+    }
 }
