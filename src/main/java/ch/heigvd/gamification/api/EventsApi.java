@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 @Api(value = "events", description = "the events API")
 public interface EventsApi {
@@ -32,7 +32,11 @@ public interface EventsApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<EventDto> eventsPost() {
+    default ResponseEntity<EventDto> eventsPost(
+
+@ApiParam(value = "The infos from an event." ,required=true ) @RequestBody EventDto event
+
+) {
         // do some magic!
         return new ResponseEntity<EventDto>(HttpStatus.OK);
     }

@@ -2,6 +2,8 @@ package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.RuleDto;
 import ch.heigvd.gamification.api.dto.ErrorDto;
+import ch.heigvd.gamification.api.dto.InlineResponse2001Dto;
+import ch.heigvd.gamification.api.dto.ActionDto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 @Api(value = "rules", description = "the rules API")
 public interface RulesApi {
@@ -32,7 +34,75 @@ public interface RulesApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<RuleDto> rulesPost() {
+    default ResponseEntity<RuleDto> rulesPost(
+
+@ApiParam(value = "The infos from a rule." ,required=true ) @RequestBody RuleDto rule
+
+) {
+        // do some magic!
+        return new ResponseEntity<RuleDto>(HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value = "Delete a Rule", notes = "The endpoint to delete a Rule. ", response = Void.class, authorizations = {
+        @Authorization(value = "api_key")
+    }, tags={ "Rule", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 204, message = "The rule has been deleted", response = Void.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+    @RequestMapping(value = "/rules/{rule-id}",
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Void> rulesRuleIdDelete(
+@ApiParam(value = "The rule identifier number",required=true ) @PathVariable("ruleId") Integer ruleId
+
+
+) {
+        // do some magic!
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value = "Get a rule", notes = "Get basic information about a rule.", response = InlineResponse2001Dto.class, authorizations = {
+        @Authorization(value = "api_key")
+    }, tags={ "Rules", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "The rule object", response = InlineResponse2001Dto.class) })
+    @RequestMapping(value = "/rules/{rule-id}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<InlineResponse2001Dto> rulesRuleIdGet(
+@ApiParam(value = "The rule identifier number",required=true ) @PathVariable("ruleId") Integer ruleId
+
+
+) {
+        // do some magic!
+        return new ResponseEntity<InlineResponse2001Dto>(HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value = "Update a scale point", notes = "The endpoint to update a rule. ", response = RuleDto.class, authorizations = {
+        @Authorization(value = "api_key")
+    }, tags={ "Rules", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 204, message = "The rule has been updated", response = RuleDto.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = RuleDto.class) })
+    @RequestMapping(value = "/rules/{rule-id}",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
+    default ResponseEntity<RuleDto> rulesRuleIdPut(
+@ApiParam(value = "The rule identifier number",required=true ) @PathVariable("ruleId") Integer ruleId
+
+
+,@ApiParam(value = "Type of the event triggering the rule", required = true) @RequestParam(value = "eventType", required = true) String eventType
+
+
+
+,
+
+@ApiParam(value = "Action to do when the event is triggered" ,required=true ) @RequestBody ActionDto action
+
+) {
         // do some magic!
         return new ResponseEntity<RuleDto>(HttpStatus.OK);
     }

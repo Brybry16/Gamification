@@ -3,33 +3,39 @@ package ch.heigvd.gamification.api;
 import ch.heigvd.gamification.api.dto.ErrorDto;
 import ch.heigvd.gamification.api.dto.InlineResponse200Dto;
 import ch.heigvd.gamification.api.dto.BadgeDto;
+
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 @Api(value = "badges", description = "the badges API")
 public interface BadgesApi {
 
     @ApiOperation(value = "Delete a Badge", notes = "The Badge endpoint to delete a Badge. ", response = Void.class, authorizations = {
-            @Authorization(value = "api_key")
+        @Authorization(value = "api_key")
     }, tags={ "Badges", })
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The badge has been deleted", response = Void.class),
-            @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 204, message = "The badge has been deleted", response = Void.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
     @RequestMapping(value = "/badges/{badge-id}",
-            produces = { "application/json" },
-            consumes = { "application/json" },
-            method = RequestMethod.DELETE)
+        method = RequestMethod.DELETE)
     default ResponseEntity<Void> badgesBadgeIdDelete(
-            @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") String badgeId
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
 
 
-    ) {
+) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -42,47 +48,45 @@ public interface BadgesApi {
         @ApiResponse(code = 200, message = "The badge object", response = InlineResponse200Dto.class) })
     @RequestMapping(value = "/badges/{badge-id}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
     default ResponseEntity<InlineResponse200Dto> badgesBadgeIdGet(
-@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") String badgeId
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
 
 
-    ) {
+) {
         // do some magic!
         return new ResponseEntity<InlineResponse200Dto>(HttpStatus.OK);
     }
 
 
     @ApiOperation(value = "Update a Badge", notes = "The Badge endpoint to update a Badge.", response = Void.class, authorizations = {
-            @Authorization(value = "api_key")
+        @Authorization(value = "api_key")
     }, tags={ "Badges", })
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The badge has been updated", response = Void.class),
-            @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 204, message = "The badge has been updated", response = Void.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
     @RequestMapping(value = "/badges/{badge-id}",
-            produces = { "application/json" },
-            consumes = { "application/json" },
-            method = RequestMethod.PUT)
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
     default ResponseEntity<Void> badgesBadgeIdPut(
-            @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") String badgeId
+@ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
 
 
-            ,@ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
-
-
-
-            ,@ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image
+,@ApiParam(value = "Name of the badge") @RequestParam(value = "name", required = false) String name
 
 
 
-    ) {
+,@ApiParam(value = "Path to the image") @RequestParam(value = "image", required = false) String image
+
+
+
+) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
 
-    @ApiOperation(value = "Get all the badges", notes = "The badge endpoint returns informations about all the *Badges*.  ", response = BadgeDto.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Get all the badges", notes = "The badge endpoint returns informations about all the *Badges*. ", response = BadgeDto.class, responseContainer = "List", authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Badges", })
     @ApiResponses(value = { 
@@ -90,13 +94,11 @@ public interface BadgesApi {
         @ApiResponse(code = 200, message = "Unexpected error", response = BadgeDto.class) })
     @RequestMapping(value = "/badges",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
     default ResponseEntity<List<BadgeDto>> badgesGet() {
         // do some magic!
         return new ResponseEntity<List<BadgeDto>>(HttpStatus.OK);
     }
-
 
 
     @ApiOperation(value = "Add a Badge", notes = "The Badge endpoint to add a new Badge.", response = BadgeDto.class, authorizations = {
@@ -106,14 +108,13 @@ public interface BadgesApi {
         @ApiResponse(code = 201, message = "Badge has been successfully created", response = BadgeDto.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = BadgeDto.class) })
     @RequestMapping(value = "/badges",
-        produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
     default ResponseEntity<BadgeDto> badgesPost(
 
 @ApiParam(value = "The info required to add a badge." ,required=true ) @RequestBody BadgeDto badge
 
-    ) {
+) {
         // do some magic!
         return new ResponseEntity<BadgeDto>(HttpStatus.OK);
     }

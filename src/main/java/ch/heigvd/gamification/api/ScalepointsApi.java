@@ -2,7 +2,7 @@ package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.ErrorDto;
 import ch.heigvd.gamification.api.dto.ScalePointDto;
-import ch.heigvd.gamification.api.dto.InlineResponse2001Dto;
+import ch.heigvd.gamification.api.dto.InlineResponse2002Dto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 @Api(value = "scalepoints", description = "the scalepoints API")
 public interface ScalepointsApi {
 
-    @ApiOperation(value = "Get all the scale points", notes = "The scale point endpoint returns informations about all the *Scale Points*.  ", response = ScalePointDto.class, responseContainer = "List", authorizations = {
+    @ApiOperation(value = "Get all the scale points", notes = "The scale point endpoint returns informations about all the *Scale Points*. ", response = ScalePointDto.class, responseContainer = "List", authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Scale Points", })
     @ApiResponses(value = { 
@@ -31,7 +31,6 @@ public interface ScalepointsApi {
         @ApiResponse(code = 200, message = "Unexpected error", response = ScalePointDto.class) })
     @RequestMapping(value = "/scalepoints",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
     default ResponseEntity<List<ScalePointDto>> scalepointsGet() {
         // do some magic!
@@ -66,11 +65,9 @@ public interface ScalepointsApi {
         @ApiResponse(code = 204, message = "The scale point has been deleted", response = Void.class),
         @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
     @RequestMapping(value = "/scalepoints/{sp-id}",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.DELETE)
     default ResponseEntity<Void> scalepointsSpIdDelete(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") String spId
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
 
 
 ) {
@@ -79,37 +76,36 @@ public interface ScalepointsApi {
     }
 
 
-    @ApiOperation(value = "Get a scale point", notes = "Get basic information about a scale point.", response = InlineResponse2001Dto.class, authorizations = {
+    @ApiOperation(value = "Get a scale point", notes = "Get basic information about a scale point.", response = InlineResponse2002Dto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Scale Points", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "The scale point object", response = InlineResponse2001Dto.class) })
+        @ApiResponse(code = 200, message = "The scale point object", response = InlineResponse2002Dto.class) })
     @RequestMapping(value = "/scalepoints/{sp-id}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
-    default ResponseEntity<InlineResponse2001Dto> scalepointsSpIdGet(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") String spId
+    default ResponseEntity<InlineResponse2002Dto> scalepointsSpIdGet(
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
 
 
 ) {
         // do some magic!
-        return new ResponseEntity<InlineResponse2001Dto>(HttpStatus.OK);
+        return new ResponseEntity<InlineResponse2002Dto>(HttpStatus.OK);
     }
 
 
-    @ApiOperation(value = "Update a Badge", notes = "The scale point endpoint to update a scale point. ", response = Void.class, authorizations = {
+    @ApiOperation(value = "Update a scale point", notes = "The scale point endpoint to update a scale point. ", response = ScalePointDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Scale Points", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 204, message = "The scale point has been updated", response = Void.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+        @ApiResponse(code = 204, message = "The scale point has been updated", response = ScalePointDto.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = ScalePointDto.class) })
     @RequestMapping(value = "/scalepoints/{sp-id}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Void> scalepointsSpIdPut(
-@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") String spId
+    default ResponseEntity<ScalePointDto> scalepointsSpIdPut(
+@ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
 
 
 ,@ApiParam(value = "Name of the scale point", required = true) @RequestParam(value = "name", required = true) String name
@@ -118,7 +114,7 @@ public interface ScalepointsApi {
 
 ) {
         // do some magic!
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<ScalePointDto>(HttpStatus.OK);
     }
 
 }

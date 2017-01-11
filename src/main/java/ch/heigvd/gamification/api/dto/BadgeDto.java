@@ -12,10 +12,10 @@ import java.io.Serializable;
 /**
  * BadgeDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 public class BadgeDto  implements Serializable {
-  private String id = null;
+  private Integer id = null;
 
   private String name = null;
 
@@ -23,7 +23,7 @@ public class BadgeDto  implements Serializable {
 
   private String image = null;
 
-  public BadgeDto id(String id) {
+  public BadgeDto id(Integer id) {
     this.id = id;
     return this;
   }
@@ -33,11 +33,11 @@ public class BadgeDto  implements Serializable {
    * @return id
   **/
   @ApiModelProperty(value = "Unique identifier representing a specific badge")
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

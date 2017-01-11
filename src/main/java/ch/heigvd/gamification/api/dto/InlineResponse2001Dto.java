@@ -1,7 +1,7 @@
 package ch.heigvd.gamification.api.dto;
 
 import java.util.Objects;
-import ch.heigvd.gamification.api.dto.ScalePointDto;
+import ch.heigvd.gamification.api.dto.RuleDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -13,12 +13,12 @@ import java.io.Serializable;
 /**
  * InlineResponse2001Dto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 public class InlineResponse2001Dto  implements Serializable {
-  private ScalePointDto data = null;
+  private RuleDto data = null;
 
-  public InlineResponse2001Dto data(ScalePointDto data) {
+  public InlineResponse2001Dto data(RuleDto data) {
     this.data = data;
     return this;
   }
@@ -28,11 +28,11 @@ public class InlineResponse2001Dto  implements Serializable {
    * @return data
   **/
   @ApiModelProperty(value = "")
-  public ScalePointDto getData() {
+  public RuleDto getData() {
     return data;
   }
 
-  public void setData(ScalePointDto data) {
+  public void setData(RuleDto data) {
     this.data = data;
   }
 

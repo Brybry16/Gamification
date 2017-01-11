@@ -1,6 +1,5 @@
 package ch.heigvd.gamification.api.dto;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -13,18 +12,18 @@ import java.io.Serializable;
 /**
  * ScalePointDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
 
 public class ScalePointDto  implements Serializable {
-  private String id = null;
+  private Integer id = null;
 
   private String description = null;
 
   private String name = null;
 
-  private BigDecimal points = null;
+  private Integer points = null;
 
-  public ScalePointDto id(String id) {
+  public ScalePointDto id(Integer id) {
     this.id = id;
     return this;
   }
@@ -34,11 +33,11 @@ public class ScalePointDto  implements Serializable {
    * @return id
   **/
   @ApiModelProperty(value = "Unique identifier representing a specific scale point")
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -78,7 +77,7 @@ public class ScalePointDto  implements Serializable {
     this.name = name;
   }
 
-  public ScalePointDto points(BigDecimal points) {
+  public ScalePointDto points(Integer points) {
     this.points = points;
     return this;
   }
@@ -88,11 +87,11 @@ public class ScalePointDto  implements Serializable {
    * @return points
   **/
   @ApiModelProperty(value = "Points")
-  public BigDecimal getPoints() {
+  public Integer getPoints() {
     return points;
   }
 
-  public void setPoints(BigDecimal points) {
+  public void setPoints(Integer points) {
     this.points = points;
   }
 
