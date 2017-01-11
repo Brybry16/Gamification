@@ -2,7 +2,6 @@ package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.ErrorDto;
 import ch.heigvd.gamification.api.dto.ScalePointDto;
-import ch.heigvd.gamification.api.dto.InlineResponse2002Dto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
 
 @Api(value = "scalepoints", description = "the scalepoints API")
 public interface ScalepointsApi {
@@ -76,21 +75,21 @@ public interface ScalepointsApi {
     }
 
 
-    @ApiOperation(value = "Get a scale point", notes = "Get basic information about a scale point.", response = InlineResponse2002Dto.class, authorizations = {
+    @ApiOperation(value = "Get a scale point", notes = "Get basic information about a scale point.", response = ScalePointDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Scale Points", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "The scale point object", response = InlineResponse2002Dto.class) })
+        @ApiResponse(code = 200, message = "The scale point object", response = ScalePointDto.class) })
     @RequestMapping(value = "/scalepoints/{sp-id}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<InlineResponse2002Dto> scalepointsSpIdGet(
+    default ResponseEntity<ScalePointDto> scalepointsSpIdGet(
 @ApiParam(value = "The scale point identifier number",required=true ) @PathVariable("spId") Integer spId
 
 
 ) {
         // do some magic!
-        return new ResponseEntity<InlineResponse2002Dto>(HttpStatus.OK);
+        return new ResponseEntity<ScalePointDto>(HttpStatus.OK);
     }
 
 

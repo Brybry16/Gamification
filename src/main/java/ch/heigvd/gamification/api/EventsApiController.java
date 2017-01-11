@@ -1,6 +1,7 @@
 package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.EventDto;
+import io.swagger.annotations.ApiParam;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.entity.ContentType;
@@ -9,6 +10,7 @@ import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -16,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.TimeZone;
-
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-05T19:25:34.698+01:00")
 
@@ -60,12 +61,8 @@ public class EventsApiController implements EventsApi {
     }
 
     @Override
-    public ResponseEntity<EventDto> eventsPost() {
-
-
-
+    public ResponseEntity<EventDto> eventsPost(@ApiParam(value = "The infos from an event.", required = true) @RequestBody EventDto event) {
         postElastic();
-
         return null;
     }
 }

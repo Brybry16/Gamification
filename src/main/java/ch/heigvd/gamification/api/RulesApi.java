@@ -2,7 +2,6 @@ package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.RuleDto;
 import ch.heigvd.gamification.api.dto.ErrorDto;
-import ch.heigvd.gamification.api.dto.InlineResponse2001Dto;
 import ch.heigvd.gamification.api.dto.ActionDto;
 
 import io.swagger.annotations.*;
@@ -19,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
 
 @Api(value = "rules", description = "the rules API")
 public interface RulesApi {
@@ -62,21 +61,21 @@ public interface RulesApi {
     }
 
 
-    @ApiOperation(value = "Get a rule", notes = "Get basic information about a rule.", response = InlineResponse2001Dto.class, authorizations = {
+    @ApiOperation(value = "Get a rule", notes = "Get basic information about a rule.", response = RuleDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Rules", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "The rule object", response = InlineResponse2001Dto.class) })
+        @ApiResponse(code = 200, message = "The rule object", response = RuleDto.class) })
     @RequestMapping(value = "/rules/{rule-id}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<InlineResponse2001Dto> rulesRuleIdGet(
+    default ResponseEntity<RuleDto> rulesRuleIdGet(
 @ApiParam(value = "The rule identifier number",required=true ) @PathVariable("ruleId") Integer ruleId
 
 
 ) {
         // do some magic!
-        return new ResponseEntity<InlineResponse2001Dto>(HttpStatus.OK);
+        return new ResponseEntity<RuleDto>(HttpStatus.OK);
     }
 
 

@@ -2,7 +2,6 @@ package ch.heigvd.gamification.api;
 
 
 import ch.heigvd.gamification.api.dto.BadgeDto;
-import ch.heigvd.gamification.api.dto.InlineResponse200Dto;
 import ch.heigvd.gamification.dao.BadgeRepository;
 import ch.heigvd.gamification.models.Badge;
 import io.swagger.annotations.ApiParam;
@@ -44,9 +43,7 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<InlineResponse200Dto> badgesBadgeIdGet(
-            @ApiParam @PathVariable("badgeId") String badgeId) {
-
+    public ResponseEntity<BadgeDto> badgesBadgeIdGet(@ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Integer badgeId) {
         return null;
     }
 

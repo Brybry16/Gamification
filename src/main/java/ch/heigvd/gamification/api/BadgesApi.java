@@ -1,7 +1,6 @@
 package ch.heigvd.gamification.api;
 
 import ch.heigvd.gamification.api.dto.ErrorDto;
-import ch.heigvd.gamification.api.dto.InlineResponse200Dto;
 import ch.heigvd.gamification.api.dto.BadgeDto;
 
 import io.swagger.annotations.*;
@@ -18,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
 
 @Api(value = "badges", description = "the badges API")
 public interface BadgesApi {
@@ -41,21 +40,21 @@ public interface BadgesApi {
     }
 
 
-    @ApiOperation(value = "Get a badge", notes = "Get basic informations about a badge.", response = InlineResponse200Dto.class, authorizations = {
+    @ApiOperation(value = "Get a badge", notes = "Get basic informations about a badge.", response = BadgeDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Badges", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "The badge object", response = InlineResponse200Dto.class) })
+        @ApiResponse(code = 200, message = "The badge object", response = BadgeDto.class) })
     @RequestMapping(value = "/badges/{badge-id}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<InlineResponse200Dto> badgesBadgeIdGet(
+    default ResponseEntity<BadgeDto> badgesBadgeIdGet(
 @ApiParam(value = "The badge identifier number",required=true ) @PathVariable("badgeId") Integer badgeId
 
 
 ) {
         // do some magic!
-        return new ResponseEntity<InlineResponse200Dto>(HttpStatus.OK);
+        return new ResponseEntity<BadgeDto>(HttpStatus.OK);
     }
 
 

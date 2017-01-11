@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * RuleDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:05:22.005+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
 
 public class RuleDto  implements Serializable {
   private Integer id = null;
