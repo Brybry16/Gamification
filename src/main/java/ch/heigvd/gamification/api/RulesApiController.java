@@ -5,7 +5,6 @@ import ch.heigvd.gamification.api.dto.RuleDto;
 import ch.heigvd.gamification.dao.RuleRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +24,7 @@ public class RulesApiController implements RulesApi {
         action.setPayload("This my payload");
         ruleDto.setAction(action);
         ruleDto.setEventType("My Event Type");
-        ruleDto.setId(1);
+        ruleDto.setId((long)1);
         return ResponseEntity.ok(ruleDto);
     }
 }

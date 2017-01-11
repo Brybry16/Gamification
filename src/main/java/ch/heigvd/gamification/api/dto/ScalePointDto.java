@@ -12,18 +12,18 @@ import java.io.Serializable;
 /**
  * ScalePointDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:34:45.128+01:00")
 
 public class ScalePointDto  implements Serializable {
-  private Integer id = null;
+  private Long id = null;
 
   private String description = null;
 
   private String name = null;
 
-  private Integer points = null;
+  private Long points = null;
 
-  public ScalePointDto id(Integer id) {
+  public ScalePointDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -33,11 +33,11 @@ public class ScalePointDto  implements Serializable {
    * @return id
   **/
   @ApiModelProperty(value = "Unique identifier representing a specific scale point")
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -77,7 +77,7 @@ public class ScalePointDto  implements Serializable {
     this.name = name;
   }
 
-  public ScalePointDto points(Integer points) {
+  public ScalePointDto points(Long points) {
     this.points = points;
     return this;
   }
@@ -87,11 +87,11 @@ public class ScalePointDto  implements Serializable {
    * @return points
   **/
   @ApiModelProperty(value = "Points")
-  public Integer getPoints() {
+  public Long getPoints() {
     return points;
   }
 
-  public void setPoints(Integer points) {
+  public void setPoints(Long points) {
     this.points = points;
   }
 

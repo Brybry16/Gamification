@@ -12,16 +12,16 @@ import java.io.Serializable;
 /**
  * ErrorDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:34:45.128+01:00")
 
 public class ErrorDto  implements Serializable {
-  private Integer code = null;
+  private Long code = null;
 
   private String message = null;
 
   private String fields = null;
 
-  public ErrorDto code(Integer code) {
+  public ErrorDto code(Long code) {
     this.code = code;
     return this;
   }
@@ -31,11 +31,11 @@ public class ErrorDto  implements Serializable {
    * @return code
   **/
   @ApiModelProperty(value = "")
-  public Integer getCode() {
+  public Long getCode() {
     return code;
   }
 
-  public void setCode(Integer code) {
+  public void setCode(Long code) {
     this.code = code;
   }
 

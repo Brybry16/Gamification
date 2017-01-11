@@ -1,19 +1,16 @@
 package ch.heigvd.gamification.api.dto;
 
-import java.time.OffsetDateTime;
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.Objects;
 
 
 /**
  * EventDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:34:45.128+01:00")
 
 public class EventDto  implements Serializable {
   private String type = null;

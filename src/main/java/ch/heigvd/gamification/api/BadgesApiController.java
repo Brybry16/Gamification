@@ -43,8 +43,12 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<BadgeDto> badgesBadgeIdGet(@ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Integer badgeId) {
-        return null;
+    public ResponseEntity<BadgeDto> badgesBadgeIdGet(@ApiParam(value = "The badge identifier number", required = true) @PathVariable("badgeId") Long badgeId) {
+        Badge badge = badgeRepository.findOne(badgeId);
+        if (badge != null) {
+            return ResponseEntity.ok(convertToDto(badge));
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     Badge convertToEntity(BadgeDto badgeDto) {

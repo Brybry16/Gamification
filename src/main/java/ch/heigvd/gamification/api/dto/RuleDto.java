@@ -13,16 +13,16 @@ import java.io.Serializable;
 /**
  * RuleDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:12:54.710+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T16:34:45.128+01:00")
 
 public class RuleDto  implements Serializable {
-  private Integer id = null;
+  private Long id = null;
 
   private String eventType = null;
 
   private ActionDto action = null;
 
-  public RuleDto id(Integer id) {
+  public RuleDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -32,11 +32,11 @@ public class RuleDto  implements Serializable {
    * @return id
   **/
   @ApiModelProperty(value = "Unique identifier representing a specific rules")
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
