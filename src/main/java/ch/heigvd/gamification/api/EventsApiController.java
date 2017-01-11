@@ -62,6 +62,12 @@ public class EventsApiController implements EventsApi {
     @Override
     public ResponseEntity<EventDto> eventsPost(@ApiParam(value = "The infos from an event.", required = true) @RequestBody EventDto event) {
         postElastic(event);
+
+        // TODO Checker les règles qui correspondent au type de l'événement
+
+        // TODO Exécuter les actions correspondantes aux règles qui matchent
+
+        // TODO Types d'actions: Update (scale point), Check (scale point value), Award (badge to user), Send (event)
         return null;
     }
 }
