@@ -1,7 +1,7 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.Event;
-import ch.heigvd.gamification.api.dto.Error;
+import ch.heigvd.gamification.api.dto.ErrorDto;
+import ch.heigvd.gamification.api.dto.EventDto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -17,24 +17,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
 @Api(value = "events", description = "the events API")
 public interface EventsApi {
 
-    @ApiOperation(value = "Post events", notes = "add an event", response = Event.class, authorizations = {
+    @ApiOperation(value = "Post events", notes = "add an event", response = EventDto.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Events", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "event has been successfully created", response = Event.class),
-        @ApiResponse(code = 200, message = "Unexpected error", response = Event.class) })
+        @ApiResponse(code = 201, message = "event has been successfully created", response = EventDto.class),
+        @ApiResponse(code = 200, message = "Unexpected error", response = EventDto.class) })
     @RequestMapping(value = "/events",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Event> eventsPost() {
+    default ResponseEntity<EventDto> eventsPost() {
         // do some magic!
-        return new ResponseEntity<Event>(HttpStatus.OK);
+        return new ResponseEntity<EventDto>(HttpStatus.OK);
     }
 
 }

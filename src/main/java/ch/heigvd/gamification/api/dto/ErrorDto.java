@@ -10,18 +10,18 @@ import java.io.Serializable;
 
 
 /**
- * Error
+ * ErrorDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Error  implements Serializable {
+public class ErrorDto  implements Serializable {
   private Integer code = null;
 
   private String message = null;
 
   private String fields = null;
 
-  public Error code(Integer code) {
+  public ErrorDto code(Integer code) {
     this.code = code;
     return this;
   }
@@ -39,7 +39,7 @@ public class Error  implements Serializable {
     this.code = code;
   }
 
-  public Error message(String message) {
+  public ErrorDto message(String message) {
     this.message = message;
     return this;
   }
@@ -57,7 +57,7 @@ public class Error  implements Serializable {
     this.message = message;
   }
 
-  public Error fields(String fields) {
+  public ErrorDto fields(String fields) {
     this.fields = fields;
     return this;
   }
@@ -84,7 +84,7 @@ public class Error  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
+    ErrorDto error = (ErrorDto) o;
     return Objects.equals(this.code, error.code) &&
         Objects.equals(this.message, error.message) &&
         Objects.equals(this.fields, error.fields);
@@ -98,7 +98,7 @@ public class Error  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class ErrorDto {\n");
     
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
