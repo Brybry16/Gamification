@@ -1,21 +1,21 @@
 package ch.heigvd.gamification.api.dto;
 
+import java.time.OffsetDateTime;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 
 import java.io.Serializable;
 
 
 /**
- * Event
+ * EventDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Event  implements Serializable {
+public class EventDto  implements Serializable {
   private String type = null;
 
   private String user = null;
@@ -24,7 +24,7 @@ public class Event  implements Serializable {
 
   private OffsetDateTime createDate = null;
 
-  public Event type(String type) {
+  public EventDto type(String type) {
     this.type = type;
     return this;
   }
@@ -42,7 +42,7 @@ public class Event  implements Serializable {
     this.type = type;
   }
 
-  public Event user(String user) {
+  public EventDto user(String user) {
     this.user = user;
     return this;
   }
@@ -60,7 +60,7 @@ public class Event  implements Serializable {
     this.user = user;
   }
 
-  public Event payload(Object payload) {
+  public EventDto payload(Object payload) {
     this.payload = payload;
     return this;
   }
@@ -78,7 +78,7 @@ public class Event  implements Serializable {
     this.payload = payload;
   }
 
-  public Event createDate(OffsetDateTime createDate) {
+  public EventDto createDate(OffsetDateTime createDate) {
     this.createDate = createDate;
     return this;
   }
@@ -105,7 +105,7 @@ public class Event  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Event event = (Event) o;
+    EventDto event = (EventDto) o;
     return Objects.equals(this.type, event.type) &&
         Objects.equals(this.user, event.user) &&
         Objects.equals(this.payload, event.payload) &&
@@ -120,7 +120,7 @@ public class Event  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Event {\n");
+    sb.append("class EventDto {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");

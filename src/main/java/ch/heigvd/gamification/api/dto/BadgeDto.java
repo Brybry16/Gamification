@@ -10,11 +10,11 @@ import java.io.Serializable;
 
 
 /**
- * Badge
+ * BadgeDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Badge  implements Serializable {
+public class BadgeDto  implements Serializable {
   private String id = null;
 
   private String name = null;
@@ -23,7 +23,7 @@ public class Badge  implements Serializable {
 
   private String image = null;
 
-  public Badge id(String id) {
+  public BadgeDto id(String id) {
     this.id = id;
     return this;
   }
@@ -41,7 +41,7 @@ public class Badge  implements Serializable {
     this.id = id;
   }
 
-  public Badge name(String name) {
+  public BadgeDto name(String name) {
     this.name = name;
     return this;
   }
@@ -59,7 +59,7 @@ public class Badge  implements Serializable {
     this.name = name;
   }
 
-  public Badge description(String description) {
+  public BadgeDto description(String description) {
     this.description = description;
     return this;
   }
@@ -77,7 +77,7 @@ public class Badge  implements Serializable {
     this.description = description;
   }
 
-  public Badge image(String image) {
+  public BadgeDto image(String image) {
     this.image = image;
     return this;
   }
@@ -104,7 +104,7 @@ public class Badge  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Badge badge = (Badge) o;
+    BadgeDto badge = (BadgeDto) o;
     return Objects.equals(this.id, badge.id) &&
         Objects.equals(this.name, badge.name) &&
         Objects.equals(this.description, badge.description) &&
@@ -119,7 +119,7 @@ public class Badge  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Badge {\n");
+    sb.append("class BadgeDto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

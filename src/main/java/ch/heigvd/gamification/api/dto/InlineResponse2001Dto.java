@@ -1,7 +1,7 @@
 package ch.heigvd.gamification.api.dto;
 
 import java.util.Objects;
-import ch.heigvd.gamification.api.dto.Badge;
+import ch.heigvd.gamification.api.dto.ScalePointDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -11,14 +11,14 @@ import java.io.Serializable;
 
 
 /**
- * InlineResponse200
+ * InlineResponse2001Dto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class InlineResponse200  implements Serializable {
-  private Badge data = null;
+public class InlineResponse2001Dto  implements Serializable {
+  private ScalePointDto data = null;
 
-  public InlineResponse200 data(Badge data) {
+  public InlineResponse2001Dto data(ScalePointDto data) {
     this.data = data;
     return this;
   }
@@ -28,11 +28,11 @@ public class InlineResponse200  implements Serializable {
    * @return data
   **/
   @ApiModelProperty(value = "")
-  public Badge getData() {
+  public ScalePointDto getData() {
     return data;
   }
 
-  public void setData(Badge data) {
+  public void setData(ScalePointDto data) {
     this.data = data;
   }
 
@@ -45,8 +45,8 @@ public class InlineResponse200  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.data, inlineResponse200.data);
+    InlineResponse2001Dto inlineResponse2001 = (InlineResponse2001Dto) o;
+    return Objects.equals(this.data, inlineResponse2001.data);
   }
 
   @Override
@@ -57,7 +57,7 @@ public class InlineResponse200  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse200 {\n");
+    sb.append("class InlineResponse2001Dto {\n");
     
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

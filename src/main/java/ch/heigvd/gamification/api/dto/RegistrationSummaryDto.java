@@ -1,7 +1,6 @@
 package ch.heigvd.gamification.api.dto;
 
 import java.util.Objects;
-import ch.heigvd.gamification.api.dto.ScalePoint;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -11,29 +10,29 @@ import java.io.Serializable;
 
 
 /**
- * InlineResponse2001
+ * RegistrationSummaryDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class InlineResponse2001  implements Serializable {
-  private ScalePoint data = null;
+public class RegistrationSummaryDto  implements Serializable {
+  private String applicationName = null;
 
-  public InlineResponse2001 data(ScalePoint data) {
-    this.data = data;
+  public RegistrationSummaryDto applicationName(String applicationName) {
+    this.applicationName = applicationName;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get applicationName
+   * @return applicationName
   **/
   @ApiModelProperty(value = "")
-  public ScalePoint getData() {
-    return data;
+  public String getApplicationName() {
+    return applicationName;
   }
 
-  public void setData(ScalePoint data) {
-    this.data = data;
+  public void setApplicationName(String applicationName) {
+    this.applicationName = applicationName;
   }
 
 
@@ -45,21 +44,21 @@ public class InlineResponse2001  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
-    return Objects.equals(this.data, inlineResponse2001.data);
+    RegistrationSummaryDto registrationSummary = (RegistrationSummaryDto) o;
+    return Objects.equals(this.applicationName, registrationSummary.applicationName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(applicationName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2001 {\n");
+    sb.append("class RegistrationSummaryDto {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    applicationName: ").append(toIndentedString(applicationName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

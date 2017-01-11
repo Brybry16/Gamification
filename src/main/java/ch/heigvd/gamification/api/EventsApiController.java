@@ -1,6 +1,6 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.Event;
+import ch.heigvd.gamification.api.dto.EventDto;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.entity.ContentType;
@@ -60,7 +60,7 @@ public class EventsApiController implements EventsApi {
     }
 
     @Override
-    public ResponseEntity<Event> eventsPost() {
+    public ResponseEntity<EventDto> eventsPost() {
 
 
 

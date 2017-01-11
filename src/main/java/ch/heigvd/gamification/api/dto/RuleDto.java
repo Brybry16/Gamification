@@ -1,7 +1,7 @@
 package ch.heigvd.gamification.api.dto;
 
 import java.util.Objects;
-import ch.heigvd.gamification.api.dto.Action;
+import ch.heigvd.gamification.api.dto.ActionDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -11,18 +11,18 @@ import java.io.Serializable;
 
 
 /**
- * Rule
+ * RuleDto
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
-public class Rule  implements Serializable {
+public class RuleDto  implements Serializable {
   private String id = null;
 
   private String eventType = null;
 
-  private Action action = null;
+  private ActionDto action = null;
 
-  public Rule id(String id) {
+  public RuleDto id(String id) {
     this.id = id;
     return this;
   }
@@ -40,7 +40,7 @@ public class Rule  implements Serializable {
     this.id = id;
   }
 
-  public Rule eventType(String eventType) {
+  public RuleDto eventType(String eventType) {
     this.eventType = eventType;
     return this;
   }
@@ -58,7 +58,7 @@ public class Rule  implements Serializable {
     this.eventType = eventType;
   }
 
-  public Rule action(Action action) {
+  public RuleDto action(ActionDto action) {
     this.action = action;
     return this;
   }
@@ -68,11 +68,11 @@ public class Rule  implements Serializable {
    * @return action
   **/
   @ApiModelProperty(value = "")
-  public Action getAction() {
+  public ActionDto getAction() {
     return action;
   }
 
-  public void setAction(Action action) {
+  public void setAction(ActionDto action) {
     this.action = action;
   }
 
@@ -85,7 +85,7 @@ public class Rule  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Rule rule = (Rule) o;
+    RuleDto rule = (RuleDto) o;
     return Objects.equals(this.id, rule.id) &&
         Objects.equals(this.eventType, rule.eventType) &&
         Objects.equals(this.action, rule.action);
@@ -99,7 +99,7 @@ public class Rule  implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Rule {\n");
+    sb.append("class RuleDto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");

@@ -1,6 +1,6 @@
 package ch.heigvd.gamification.api;
 
-import ch.heigvd.gamification.api.dto.Registration;
+import ch.heigvd.gamification.api.dto.RegistrationDto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-14T16:19:39.332+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-01-11T15:10:29.339+01:00")
 
 @Api(value = "registrations", description = "the registrations API")
 public interface RegistrationsApi {
@@ -30,7 +30,7 @@ public interface RegistrationsApi {
         method = RequestMethod.POST)
     default ResponseEntity<Void> registrationsPost(
 
-@ApiParam(value = "The info required to register an application." ,required=true ) @RequestBody Registration registration
+@ApiParam(value = "The info required to register an application." ,required=true ) @RequestBody RegistrationDto registration
 
 ) {
         // do some magic!
